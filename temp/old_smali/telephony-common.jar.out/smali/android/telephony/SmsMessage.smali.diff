@@ -1,0 +1,20 @@
+*** ./smali/android/telephony/SmsMessage.smali	2013-11-08 15:41:49.400921504 +0800
+--- /opt/opensource/micode/9508cm/temp/new_smali/telephony-common.jar.out/./smali/android/telephony/SmsMessage.smali	2013-11-08 15:38:56.676921523 +0800
+***************
+*** 867,872 ****
+--- 867,881 ----
+      .end packed-switch
+  .end method
+  
++ .method public getMessageSimId()I
++     .locals 1
++ 
++     .prologue
++     const/4 v0, 0x0
++ 
++     return v0
++ .end method
++ 
+  .method public getOriginatingAddress()Ljava/lang/String;
+      .locals 1
+  

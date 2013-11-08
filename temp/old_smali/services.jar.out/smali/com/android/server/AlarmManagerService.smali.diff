@@ -1,0 +1,58 @@
+*** ./smali/com/android/server/AlarmManagerService.smali	2013-11-08 15:41:01.720921508 +0800
+--- /opt/opensource/micode/9508cm/temp/new_smali/services.jar.out/./smali/com/android/server/AlarmManagerService.smali	2013-11-08 15:38:06.388921529 +0800
+***************
+*** 7,12 ****
+--- 7,13 ----
+  .annotation system Ldalvik/annotation/MemberClasses;
+      value = {
+          Lcom/android/server/AlarmManagerService$ResultReceiver;,
++         Lcom/android/server/AlarmManagerService$Injector;,
+          Lcom/android/server/AlarmManagerService$UninstallReceiver;,
+          Lcom/android/server/AlarmManagerService$ClockReceiver;,
+          Lcom/android/server/AlarmManagerService$AlarmHandler;,
+***************
+*** 2656,2662 ****
+  .end method
+  
+  .method public setRepeating(IJJLandroid/app/PendingIntent;)V
+!     .locals 4
+      .parameter "type"
+      .parameter "triggerAtTime"
+      .parameter "interval"
+--- 2657,2663 ----
+  .end method
+  
+  .method public setRepeating(IJJLandroid/app/PendingIntent;)V
+!     .locals 7
+      .parameter "type"
+      .parameter "triggerAtTime"
+      .parameter "interval"
+***************
+*** 2675,2680 ****
+--- 2676,2701 ----
+      return-void
+  
+      :cond_0
++     iget-object v0, p0, Lcom/android/server/AlarmManagerService;->mContext:Landroid/content/Context;
++ 
++     move v1, p1
++ 
++     move-wide v2, p2
++ 
++     move-wide v4, p4
++ 
++     invoke-static/range {v0 .. v5}, Lcom/android/server/ExtraAlarmManagerService;->alignAlarm(Landroid/content/Context;IJJ)[J
++ 
++     move-result-object v2
++ 
++     const/4 v0, 0x0
++ 
++     aget-wide p2, v2, v0
++ 
++     const/4 v0, 0x1
++ 
++     aget-wide p4, v2, v0
++ 
+      iget-object v3, p0, Lcom/android/server/AlarmManagerService;->mLock:Ljava/lang/Object;
+  
+      monitor-enter v3

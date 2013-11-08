@@ -1,0 +1,12 @@
+*** ./smali/android/provider/Telephony.smali	2013-11-08 15:41:49.516921504 +0800
+--- /opt/opensource/micode/9508cm/temp/new_smali/telephony-common.jar.out/./smali/android/provider/Telephony.smali	2013-11-08 15:38:56.776921523 +0800
+***************
+*** 6,11 ****
+--- 6,12 ----
+  # annotations
+  .annotation system Ldalvik/annotation/MemberClasses;
+      value = {
++         Landroid/provider/Telephony$Intents;,
+          Landroid/provider/Telephony$CellBroadcasts;,
+          Landroid/provider/Telephony$Carriers;,
+          Landroid/provider/Telephony$MmsSms;,

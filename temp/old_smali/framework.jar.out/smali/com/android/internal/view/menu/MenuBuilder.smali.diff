@@ -1,0 +1,51 @@
+*** ./smali/com/android/internal/view/menu/MenuBuilder.smali	2013-11-08 15:41:45.600921503 +0800
+--- /opt/opensource/micode/9508cm/temp/new_smali/framework.jar.out/./smali/com/android/internal/view/menu/MenuBuilder.smali	2013-11-08 15:38:53.084921525 +0800
+***************
+*** 2475,2480 ****
+--- 2475,2520 ----
+      return v0
+  .end method
+  
++ .method public miuiGetActionItems()Ljava/util/ArrayList;
++     .locals 1
++     .annotation system Ldalvik/annotation/Signature;
++         value = {
++             "()",
++             "Ljava/util/ArrayList",
++             "<",
++             "Lcom/android/internal/view/menu/MenuItemImpl;",
++             ">;"
++         }
++     .end annotation
++ 
++     .prologue
++     invoke-virtual {p0}, Lcom/android/internal/view/menu/MenuBuilder;->getActionItems()Ljava/util/ArrayList;
++ 
++     move-result-object v0
++ 
++     return-object v0
++ .end method
++ 
++ .method public miuiGetVisibleItems()Ljava/util/ArrayList;
++     .locals 1
++     .annotation system Ldalvik/annotation/Signature;
++         value = {
++             "()",
++             "Ljava/util/ArrayList",
++             "<",
++             "Lcom/android/internal/view/menu/MenuItemImpl;",
++             ">;"
++         }
++     .end annotation
++ 
++     .prologue
++     invoke-virtual {p0}, Lcom/android/internal/view/menu/MenuBuilder;->getVisibleItems()Ljava/util/ArrayList;
++ 
++     move-result-object v0
++ 
++     return-object v0
++ .end method
++ 
+  .method onItemActionRequestChanged(Lcom/android/internal/view/menu/MenuItemImpl;)V
+      .locals 1
+      .parameter "item"

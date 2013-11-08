@@ -1,0 +1,19 @@
+*** ./smali/android/media/MediaRecorder.smali	2013-11-08 15:41:13.244921508 +0800
+--- /opt/opensource/micode/9508cm/temp/new_smali/framework.jar.out/./smali/android/media/MediaRecorder.smali	2013-11-08 15:38:18.288921529 +0800
+***************
+*** 189,195 ****
+      .locals 1
+  
+      .prologue
+!     const/16 v0, 0x8
+  
+      return v0
+  .end method
+--- 189,195 ----
+      .locals 1
+  
+      .prologue
+!     const/16 v0, 0x9
+  
+      return v0
+  .end method

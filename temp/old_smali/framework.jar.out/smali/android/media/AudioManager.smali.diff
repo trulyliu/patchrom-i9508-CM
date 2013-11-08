@@ -1,0 +1,24 @@
+*** ./smali/android/media/AudioManager.smali	2013-11-08 15:41:13.428921508 +0800
+--- /opt/opensource/micode/9508cm/temp/new_smali/framework.jar.out/./smali/android/media/AudioManager.smali	2013-11-08 15:38:18.464921529 +0800
+***************
+*** 1378,1383 ****
+--- 1378,1396 ----
+      .parameter "streamType"
+  
+      .prologue
++     const/4 v2, 0x0
++ 
++     iget-object v3, p0, Landroid/media/AudioManager;->mContext:Landroid/content/Context;
++ 
++     invoke-static {v3, p1}, Landroid/media/AudioManager$Injector;->checkQuietModeForNotification(Landroid/content/Context;I)Z
++ 
++     move-result v3
++ 
++     if-eqz v3, :cond_miui_0
++ 
++     return v2
++ 
++     :cond_miui_0
+      invoke-static {}, Landroid/media/AudioManager;->getService()Landroid/media/IAudioService;
+  
+      move-result-object v1

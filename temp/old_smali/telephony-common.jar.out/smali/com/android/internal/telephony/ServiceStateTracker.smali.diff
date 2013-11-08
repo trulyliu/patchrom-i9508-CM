@@ -1,0 +1,20 @@
+*** ./smali/com/android/internal/telephony/ServiceStateTracker.smali	2013-11-08 15:41:52.692921502 +0800
+--- /opt/opensource/micode/9508cm/temp/new_smali/telephony-common.jar.out/./smali/com/android/internal/telephony/ServiceStateTracker.smali	2013-11-08 15:39:00.036921524 +0800
+***************
+*** 883,888 ****
+--- 883,897 ----
+      return v0
+  .end method
+  
++ .method public getIccRecords()Lcom/android/internal/telephony/IccRecords;
++     .locals 1
++ 
++     .prologue
++     iget-object v0, p0, Lcom/android/internal/telephony/ServiceStateTracker;->mIccRecords:Lcom/android/internal/telephony/IccRecords;
++ 
++     return-object v0
++ .end method
++ 
+  .method protected abstract getPhone()Lcom/android/internal/telephony/Phone;
+  .end method
+  
