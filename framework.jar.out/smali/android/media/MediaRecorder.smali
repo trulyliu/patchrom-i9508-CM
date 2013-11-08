@@ -203,8 +203,7 @@
     .locals 1
 
     .prologue
-    .line 316
-    const/16 v0, 0x8
+    const/16 v0, 0x9
 
     return v0
 .end method

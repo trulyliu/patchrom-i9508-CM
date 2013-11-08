@@ -8,7 +8,7 @@
 
 .field protected static final DISABLE_LOCKSCREEN_KEY:Ljava/lang/String; = "lockscreen.disabled"
 
-.field public static final FAILED_ATTEMPTS_BEFORE_RESET:I = 0x14
+.field public static final FAILED_ATTEMPTS_BEFORE_RESET:I = 0x9
 
 .field public static final FAILED_ATTEMPTS_BEFORE_TIMEOUT:I = 0x5
 
@@ -115,6 +115,28 @@
 
     .line 187
     return-void
+.end method
+
+.method public static callPatternToHash(Ljava/util/List;)[B
+    .locals 1
+    .parameter
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/List",
+            "<",
+            "Lcom/android/internal/widget/LockPatternView$Cell;",
+            ">;)[B"
+        }
+    .end annotation
+
+    .prologue
+    .local p0, pattern:Ljava/util/List;,"Ljava/util/List<Lcom/android/internal/widget/LockPatternView$Cell;>;"
+    invoke-static {p0}, Lcom/android/internal/widget/LockPatternUtils;->patternToHash(Ljava/util/List;)[B
+
+    move-result-object v0
+
+    return-object v0
 .end method
 
 .method private static combineStrings([ILjava/lang/String;)Ljava/lang/String;
@@ -484,7 +506,7 @@
     return-object v0
 .end method
 
-.method private getLong(Ljava/lang/String;J)J
+.method protected getLong(Ljava/lang/String;J)J
     .locals 3
     .parameter "secureSettingKey"
     .parameter "defaultValue"
@@ -527,20 +549,17 @@
     .prologue
     const-wide/16 v4, 0x0
 
-    .line 819
     const-string v3, "lockscreen.password_salt"
 
-    invoke-direct {p0, v3, v4, v5}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
+    invoke-virtual {p0, v3, v4, v5}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
 
     move-result-wide v1
 
-    .line 820
     .local v1, salt:J
     cmp-long v3, v1, v4
 
     if-nez v3, :cond_0
 
-    .line 822
     :try_start_0
     const-string v3, "SHA1PRNG"
 
@@ -552,12 +571,10 @@
 
     move-result-wide v1
 
-    .line 823
     const-string v3, "lockscreen.password_salt"
 
-    invoke-direct {p0, v3, v1, v2}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
+    invoke-virtual {p0, v3, v1, v2}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
 
-    .line 824
     const-string v3, "LockPatternUtils"
 
     const-string v4, "Initialized lock password salt"
@@ -848,7 +865,7 @@
     goto :goto_0
 .end method
 
-.method private setLong(Ljava/lang/String;J)V
+.method protected setLong(Ljava/lang/String;J)V
     .locals 1
     .parameter "secureSettingKey"
     .parameter "value"
@@ -1478,36 +1495,29 @@
 
     const/4 v1, 0x0
 
-    .line 451
     if-nez p1, :cond_0
 
     invoke-virtual {p0}, Lcom/android/internal/widget/LockPatternUtils;->deleteGallery()V
 
-    .line 452
     :cond_0
     const/high16 v0, 0x1
 
     invoke-virtual {p0, v1, v0}, Lcom/android/internal/widget/LockPatternUtils;->saveLockPassword(Ljava/lang/String;I)V
 
-    .line 453
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Lcom/android/internal/widget/LockPatternUtils;->setLockPatternEnabled(Z)V
 
-    .line 454
     invoke-virtual {p0, v1}, Lcom/android/internal/widget/LockPatternUtils;->saveLockPattern(Ljava/util/List;)V
 
-    .line 455
     const-string v0, "lockscreen.password_type"
 
-    invoke-direct {p0, v0, v2, v3}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
+    invoke-virtual {p0, v0, v2, v3}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
 
-    .line 456
     const-string v0, "lockscreen.password_type_alternate"
 
-    invoke-direct {p0, v0, v2, v3}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
+    invoke-virtual {p0, v0, v2, v3}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
 
-    .line 457
     return-void
 .end method
 
@@ -1597,7 +1607,7 @@
 
     const-wide/32 v3, 0x10000
 
-    invoke-direct {p0, v2, v3, v4}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
+    invoke-virtual {p0, v2, v3, v4}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
 
     move-result-wide v2
 
@@ -1937,6 +1947,16 @@
     return v0
 .end method
 
+.method public getKeyguardLockoutAttemptDeadline(I)J
+    .locals 2
+    .parameter "failedAttempts"
+
+    .prologue
+    const-wide/16 v0, -0x1
+
+    return-wide v0
+.end method
+
 .method public getKeyguardStoredPasswordQuality()I
     .locals 5
 
@@ -1946,7 +1966,7 @@
     .line 732
     const-string v1, "lockscreen.password_type"
 
-    invoke-direct {p0, v1, v3, v4}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
+    invoke-virtual {p0, v1, v3, v4}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
 
     move-result-wide v1
 
@@ -1961,7 +1981,7 @@
     .line 737
     const-string v1, "lockscreen.password_type_alternate"
 
-    invoke-direct {p0, v1, v3, v4}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
+    invoke-virtual {p0, v1, v3, v4}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
 
     move-result-wide v1
 
@@ -2013,20 +2033,17 @@
     .prologue
     const-wide/16 v4, 0x0
 
-    .line 1026
     const-string v6, "lockscreen.lockoutattemptdeadline"
 
-    invoke-direct {p0, v6, v4, v5}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
+    invoke-virtual {p0, v6, v4, v5}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
 
     move-result-wide v0
 
-    .line 1027
     .local v0, deadline:J
     invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
 
     move-result-wide v2
 
-    .line 1028
     .local v2, now:J
     cmp-long v6, v0, v2
 
@@ -2393,14 +2410,12 @@
     .prologue
     const-wide/16 v4, 0x0
 
-    .line 942
     const-string v2, "lock_biometric_weak_flags"
 
-    invoke-direct {p0, v2, v4, v5}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
+    invoke-virtual {p0, v2, v4, v5}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
 
     move-result-wide v0
 
-    .line 943
     .local v0, currentFlag:J
     const-wide/16 v2, 0x1
 
@@ -2475,18 +2490,16 @@
 
     const/4 v6, 0x0
 
-    .line 871
     const-string v8, "lockscreen.password_type"
 
-    invoke-direct {p0, v8, v9, v10}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
+    invoke-virtual {p0, v8, v9, v10}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
 
     move-result-wide v3
 
-    .line 872
     .local v3, mode:J
     const-string v8, "lockscreen.password_type_alternate"
 
-    invoke-direct {p0, v8, v9, v10}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
+    invoke-virtual {p0, v8, v9, v10}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
 
     move-result-wide v1
 
@@ -2600,7 +2613,7 @@
     .line 890
     const-string v3, "lockscreen.password_type_alternate"
 
-    invoke-direct {p0, v3, v5, v6}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
+    invoke-virtual {p0, v3, v5, v6}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
 
     move-result-wide v3
 
@@ -2623,7 +2636,7 @@
 
     const-string v3, "lockscreen.password_type"
 
-    invoke-direct {p0, v3, v5, v6}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
+    invoke-virtual {p0, v3, v5, v6}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
 
     move-result-wide v3
 
@@ -2664,6 +2677,10 @@
     .prologue
     const-wide/16 v2, 0x0
 
+    sget-boolean v0, Lmiui/os/Build;->IS_ALPHA_BUILD:Z
+
+    if-nez v0, :cond_0
+
     .line 476
     invoke-virtual {p0}, Lcom/android/internal/widget/LockPatternUtils;->isSecure()Z
 
@@ -2673,7 +2690,7 @@
 
     const-string v0, "lockscreen.disabled"
 
-    invoke-direct {p0, v0, v2, v3}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
+    invoke-virtual {p0, v0, v2, v3}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
 
     move-result-wide v0
 
@@ -3343,10 +3360,15 @@
 .end method
 
 .method public reportSuccessfulPasswordAttempt()V
-    .locals 2
+    .locals 3
 
     .prologue
-    .line 253
+    const-string v0, "lockscreen.lockoutattemptdeadline"
+
+    const-wide/16 v1, 0x0
+
+    invoke-virtual {p0, v0, v1, v2}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
+
     invoke-virtual {p0}, Lcom/android/internal/widget/LockPatternUtils;->getDevicePolicyManager()Landroid/app/admin/DevicePolicyManager;
 
     move-result-object v0
@@ -4035,49 +4057,40 @@
 
     invoke-interface {v1, v10, v2}, Lcom/android/internal/widget/ILockSettings;->setLockPattern([BI)V
 
-    .line 517
     invoke-virtual {p0}, Lcom/android/internal/widget/LockPatternUtils;->getDevicePolicyManager()Landroid/app/admin/DevicePolicyManager;
 
     move-result-object v0
 
-    .line 518
     .local v0, dpm:Landroid/app/admin/DevicePolicyManager;
     invoke-static {}, Landroid/security/KeyStore;->getInstance()Landroid/security/KeyStore;
 
     move-result-object v11
 
-    .line 519
     .local v11, keyStore:Landroid/security/KeyStore;
     if-eqz p1, :cond_1
 
-    .line 520
     invoke-virtual {p0, p1}, Lcom/android/internal/widget/LockPatternUtils;->patternToString(Ljava/util/List;)Ljava/lang/String;
 
     move-result-object v1
 
     invoke-virtual {v11, v1}, Landroid/security/KeyStore;->password(Ljava/lang/String;)Z
 
-    .line 521
     const-string v1, "lockscreen.patterneverchosen"
 
     const/4 v2, 0x1
 
     invoke-direct {p0, v1, v2}, Lcom/android/internal/widget/LockPatternUtils;->setBoolean(Ljava/lang/String;Z)V
 
-    .line 522
     if-nez p2, :cond_0
 
-    .line 523
     invoke-virtual {p0}, Lcom/android/internal/widget/LockPatternUtils;->deleteGallery()V
 
-    .line 524
     const-string v1, "lockscreen.password_type"
 
     const-wide/32 v2, 0x10000
 
-    invoke-direct {p0, v1, v2, v3}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
+    invoke-virtual {p0, v1, v2, v3}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
 
-    .line 525
     const/high16 v1, 0x1
 
     invoke-interface {p1}, Ljava/util/List;->size()I
@@ -4116,19 +4129,16 @@
 
     const-wide/32 v2, 0x8000
 
-    invoke-direct {p0, v1, v2, v3}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
+    invoke-virtual {p0, v1, v2, v3}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
 
-    .line 529
     const-string v1, "lockscreen.password_type_alternate"
 
     const-wide/32 v2, 0x10000
 
-    invoke-direct {p0, v1, v2, v3}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
+    invoke-virtual {p0, v1, v2, v3}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
 
-    .line 531
     invoke-direct {p0}, Lcom/android/internal/widget/LockPatternUtils;->finishBiometricWeak()V
 
-    .line 532
     const v1, 0x8000
 
     const/4 v2, 0x0
@@ -4311,30 +4321,25 @@
 
     const-wide/16 v5, 0x0
 
-    invoke-direct {p0, v4, v5, v6}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
+    invoke-virtual {p0, v4, v5, v6}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
 
     move-result-wide v0
 
-    .line 930
     .local v0, currentFlag:J
     if-eqz p1, :cond_0
 
-    .line 931
     const-wide/16 v4, 0x1
 
     or-long v2, v0, v4
 
-    .line 935
     .local v2, newFlag:J
     :goto_0
     const-string v4, "lock_biometric_weak_flags"
 
-    invoke-direct {p0, v4, v2, v3}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
+    invoke-virtual {p0, v4, v2, v3}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
 
-    .line 936
     return-void
 
-    .line 933
     .end local v2           #newFlag:J
     :cond_0
     const-wide/16 v4, -0x2
@@ -4369,6 +4374,16 @@
 
     .line 1399
     return-void
+.end method
+
+.method public setKeyguardLockoutAttemptDeadline(I)J
+    .locals 2
+    .parameter "failedAttempts"
+
+    .prologue
+    const-wide/16 v0, -0x1
+
+    return-wide v0
 .end method
 
 .method public setLockPatternEnabled(Z)V
@@ -4412,7 +4427,7 @@
     const-wide/16 v0, 0x1
 
     :goto_0
-    invoke-direct {p0, v2, v0, v1}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
+    invoke-virtual {p0, v2, v0, v1}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
 
     .line 467
     return-void
@@ -4437,13 +4452,11 @@
 
     add-long v0, v2, v4
 
-    .line 1016
     .local v0, deadline:J
     const-string v2, "lockscreen.lockoutattemptdeadline"
 
-    invoke-direct {p0, v2, v0, v1}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
+    invoke-virtual {p0, v2, v0, v1}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
 
-    .line 1017
     return-wide v0
 .end method
 
@@ -4500,6 +4513,14 @@
     invoke-direct {p0, v0, p1}, Lcom/android/internal/widget/LockPatternUtils;->setBoolean(Ljava/lang/String;Z)V
 
     .line 995
+    return-void
+.end method
+
+.method public setTactileFeedbackEnabled(Z)V
+    .locals 0
+    .parameter "enabled"
+
+    .prologue
     return-void
 .end method
 
@@ -4761,7 +4782,7 @@
 
     const-wide/32 v2, 0x10000
 
-    invoke-direct {p0, v1, v2, v3}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
+    invoke-virtual {p0, v1, v2, v3}, Lcom/android/internal/widget/LockPatternUtils;->getLong(Ljava/lang/String;J)J
 
     move-result-wide v1
 

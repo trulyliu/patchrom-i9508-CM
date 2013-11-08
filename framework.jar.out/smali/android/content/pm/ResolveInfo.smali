@@ -9,7 +9,8 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Landroid/content/pm/ResolveInfo$DisplayNameComparator;
+        Landroid/content/pm/ResolveInfo$DisplayNameComparator;,
+        Landroid/content/pm/ResolveInfo$Injector;
     }
 .end annotation
 
@@ -782,17 +783,18 @@
 
     move-result-object v2
 
-    .line 174
     .local v2, dr:Landroid/graphics/drawable/Drawable;
+    invoke-static {v2}, Lmiui/content/res/IconCustomizer;->generateIconStyleDrawable(Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/BitmapDrawable;
+
+    move-result-object v2
+
     if-eqz v2, :cond_1
 
-    .line 186
     .end local v2           #dr:Landroid/graphics/drawable/Drawable;
     :cond_0
     :goto_0
     return-object v2
 
-    .line 178
     :cond_1
     iget-object v3, p0, Landroid/content/pm/ResolveInfo;->activityInfo:Landroid/content/pm/ActivityInfo;
 
@@ -814,9 +816,11 @@
     .line 181
     iget-object v3, v1, Landroid/content/pm/ComponentInfo;->packageName:Ljava/lang/String;
 
+    iget-object v5, v1, Landroid/content/pm/ComponentInfo;->name:Ljava/lang/String;
+
     iget v4, p0, Landroid/content/pm/ResolveInfo;->icon:I
 
-    invoke-virtual {p1, v3, v4, v0}, Landroid/content/pm/PackageManager;->getDrawable(Ljava/lang/String;ILandroid/content/pm/ApplicationInfo;)Landroid/graphics/drawable/Drawable;
+    invoke-static {p1, v3, v5, v4, v0}, Landroid/app/MiuiThemeHelper;->getDrawable(Landroid/content/pm/PackageManager;Ljava/lang/String;Ljava/lang/String;ILandroid/content/pm/ApplicationInfo;)Landroid/graphics/drawable/Drawable;
 
     move-result-object v2
 

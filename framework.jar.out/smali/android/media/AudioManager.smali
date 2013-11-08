@@ -1540,28 +1540,36 @@
     .parameter "streamType"
 
     .prologue
-    .line 705
+    const/4 v2, 0x0
+
+    iget-object v3, p0, Landroid/media/AudioManager;->mContext:Landroid/content/Context;
+
+    invoke-static {v3, p1}, Landroid/media/AudioManager$Injector;->checkQuietModeForNotification(Landroid/content/Context;I)Z
+
+    move-result v3
+
+    if-eqz v3, :cond_miui_0
+
+    return v2
+
+    :cond_miui_0
     invoke-static {}, Landroid/media/AudioManager;->getService()Landroid/media/IAudioService;
 
     move-result-object v1
 
-    .line 707
     .local v1, service:Landroid/media/IAudioService;
     :try_start_0
     iget-boolean v2, p0, Landroid/media/AudioManager;->mUseMasterVolume:Z
 
     if-eqz v2, :cond_0
 
-    .line 708
     invoke-interface {v1}, Landroid/media/IAudioService;->getMasterVolume()I
 
     move-result v2
 
-    .line 714
     :goto_0
     return v2
 
-    .line 710
     :cond_0
     invoke-interface {v1, p1}, Landroid/media/IAudioService;->getStreamVolume(I)I
     :try_end_0

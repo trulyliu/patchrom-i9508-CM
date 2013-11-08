@@ -9,7 +9,8 @@
         Landroid/net/CaptivePortalTracker$DelayedCaptiveCheckState;,
         Landroid/net/CaptivePortalTracker$ActiveNetworkState;,
         Landroid/net/CaptivePortalTracker$NoActiveNetworkState;,
-        Landroid/net/CaptivePortalTracker$DefaultState;
+        Landroid/net/CaptivePortalTracker$DefaultState;,
+        Landroid/net/CaptivePortalTracker$Injector;
     }
 .end annotation
 
@@ -986,22 +987,24 @@
 
     iput-object v7, v3, Landroid/app/Notification;->contentIntent:Landroid/app/PendingIntent;
 
-    .line 364
     iput-object v6, v3, Landroid/app/Notification;->tickerText:Ljava/lang/CharSequence;
 
-    .line 365
     iget-object v7, p0, Landroid/net/CaptivePortalTracker;->mContext:Landroid/content/Context;
 
     iget-object v8, v3, Landroid/app/Notification;->contentIntent:Landroid/app/PendingIntent;
 
     invoke-virtual {v3, v7, v6, v0, v8}, Landroid/app/Notification;->setLatestEventInfo(Landroid/content/Context;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Landroid/app/PendingIntent;)V
 
-    .line 367
-    const-string v7, "CaptivePortal.Notification"
+    iget-object v7, p0, Landroid/net/CaptivePortalTracker;->mContext:Landroid/content/Context;
 
-    invoke-virtual {v4, v7, v11, v3}, Landroid/app/NotificationManager;->notify(Ljava/lang/String;ILandroid/app/Notification;)V
+    iget-object v8, p0, Landroid/net/CaptivePortalTracker;->mNetworkInfo:Landroid/net/NetworkInfo;
 
-    .line 371
+    invoke-virtual {v8}, Landroid/net/NetworkInfo;->getExtraInfo()Ljava/lang/String;
+
+    move-result-object v8
+
+    invoke-static {v7, v2, v8}, Landroid/net/CaptivePortalTracker$Injector;->showLogin(Landroid/content/Context;Landroid/content/Intent;Ljava/lang/String;)V
+
     .end local v0           #details:Ljava/lang/CharSequence;
     .end local v1           #icon:I
     .end local v2           #intent:Landroid/content/Intent;
