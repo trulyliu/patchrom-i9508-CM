@@ -36,6 +36,8 @@
 
 .field final mAttachedWindow:Lcom/android/server/wm/WindowState;
 
+.field mAttrFlagsSaved:Z
+
 .field final mAttrs:Landroid/view/WindowManager$LayoutParams;
 
 .field final mBaseLayer:I
@@ -74,6 +76,8 @@
 
 .field mExiting:Z
 
+.field final mFloatingWindowAllowed:Z
+
 .field final mFrame:Landroid/graphics/Rect;
 
 .field final mGivenContentInsets:Landroid/graphics/Rect;
@@ -93,6 +97,8 @@
 .field mHaveFrame:Z
 
 .field mInputChannel:Landroid/view/InputChannel;
+
+.field mInputChannelSaved:Landroid/view/InputChannel;
 
 .field final mInputWindowHandle:Lcom/android/server/input/InputWindowHandle;
 
@@ -670,114 +676,97 @@
     :goto_4
     iput-boolean v6, p0, Lcom/android/server/wm/WindowState;->mIsFloatingLayer:Z
 
-    .line 339
     :goto_5
     move-object v2, p0
 
-    .line 340
     .local v2, appWin:Lcom/android/server/wm/WindowState;
     :goto_6
     iget-object v6, v2, Lcom/android/server/wm/WindowState;->mAttachedWindow:Lcom/android/server/wm/WindowState;
 
     if-eqz v6, :cond_d
 
-    .line 341
     iget-object v2, v2, Lcom/android/server/wm/WindowState;->mAttachedWindow:Lcom/android/server/wm/WindowState;
 
     goto :goto_6
 
-    .line 286
     .end local v2           #appWin:Lcom/android/server/wm/WindowState;
     :cond_2
     const/4 v6, 0x0
 
     goto :goto_0
 
-    .line 292
     :catch_0
     move-exception v4
 
-    .line 293
     .local v4, e:Landroid/os/RemoteException;
     const/4 v6, 0x0
 
     iput-object v6, p0, Lcom/android/server/wm/WindowState;->mDeathRecipient:Lcom/android/server/wm/WindowState$DeathRecipient;
 
-    .line 294
     const/4 v6, 0x0
 
     iput-object v6, p0, Lcom/android/server/wm/WindowState;->mAttachedWindow:Lcom/android/server/wm/WindowState;
 
-    .line 295
     const/4 v6, 0x0
 
     iput-boolean v6, p0, Lcom/android/server/wm/WindowState;->mLayoutAttached:Z
 
-    .line 296
     const/4 v6, 0x0
 
     iput-boolean v6, p0, Lcom/android/server/wm/WindowState;->mIsImWindow:Z
 
-    .line 297
     const/4 v6, 0x0
 
     iput-boolean v6, p0, Lcom/android/server/wm/WindowState;->mIsWallpaper:Z
 
-    .line 298
     const/4 v6, 0x0
 
     iput-boolean v6, p0, Lcom/android/server/wm/WindowState;->mIsFloatingLayer:Z
 
-    .line 299
     const/4 v6, 0x0
 
     iput v6, p0, Lcom/android/server/wm/WindowState;->mBaseLayer:I
 
-    .line 300
     const/4 v6, 0x0
 
     iput v6, p0, Lcom/android/server/wm/WindowState;->mSubLayer:I
 
-    .line 301
     const/4 v6, 0x0
 
     iput-object v6, p0, Lcom/android/server/wm/WindowState;->mInputWindowHandle:Lcom/android/server/input/InputWindowHandle;
 
-    .line 302
     const/4 v6, 0x0
 
     iput-object v6, p0, Lcom/android/server/wm/WindowState;->mWinAnimator:Lcom/android/server/wm/WindowStateAnimator;
 
-    .line 367
+    const/4 v6, 0x0
+
+    iput-boolean v6, p0, Lcom/android/server/wm/WindowState;->mFloatingWindowAllowed:Z
+
     .end local v4           #e:Landroid/os/RemoteException;
     :goto_7
     return-void
 
-    .line 318
     :cond_3
     const/4 v6, 0x0
 
     goto :goto_1
 
-    .line 320
     :cond_4
     const/4 v6, 0x0
 
     goto :goto_2
 
-    .line 322
     :cond_5
     const/4 v6, 0x0
 
     goto :goto_3
 
-    .line 323
     :cond_6
     const/4 v6, 0x0
 
     goto :goto_4
 
-    .line 327
     :cond_7
     iget-object v6, p0, Lcom/android/server/wm/WindowState;->mPolicy:Landroid/view/WindowManagerPolicy;
 
@@ -993,6 +982,16 @@
     invoke-direct {v7, v6, p0, v8}, Lcom/android/server/input/InputWindowHandle;-><init>(Lcom/android/server/input/InputApplicationHandle;Ljava/lang/Object;I)V
 
     iput-object v7, p0, Lcom/android/server/wm/WindowState;->mInputWindowHandle:Lcom/android/server/input/InputWindowHandle;
+
+    iget-object v6, p0, Lcom/android/server/wm/WindowState;->mSession:Lcom/android/server/wm/Session;
+
+    iget v6, v6, Lcom/android/server/wm/Session;->mUid:I
+
+    invoke-static {v6}, Lcom/android/server/wm/WindowManagerService$Injector;->isFloatingWindowAllowed(I)Z
+
+    move-result v6
+
+    iput-boolean v6, p0, Lcom/android/server/wm/WindowState;->mFloatingWindowAllowed:Z
 
     goto/16 :goto_7
 

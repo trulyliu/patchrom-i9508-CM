@@ -3,6 +3,14 @@
 .source "UiModeManagerService.java"
 
 
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lcom/android/server/UiModeManagerService$Injector;
+    }
+.end annotation
+
+
 # static fields
 .field private static final ENABLE_LAUNCH_CAR_DOCK_APP:Z = true
 
@@ -47,6 +55,8 @@
 .field final mLock:Ljava/lang/Object;
 
 .field private mNightMode:I
+
+.field mNormalType:I
 
 .field private mNotificationManager:Landroid/app/NotificationManager;
 
@@ -100,101 +110,82 @@
 
     const/4 v2, 0x0
 
-    .line 162
     invoke-direct {p0}, Landroid/app/IUiModeManager$Stub;-><init>()V
 
-    .line 63
+    iput v1, p0, Lcom/android/server/UiModeManagerService;->mNormalType:I
+
     new-instance v0, Landroid/os/Handler;
 
     invoke-direct {v0}, Landroid/os/Handler;-><init>()V
 
     iput-object v0, p0, Lcom/android/server/UiModeManagerService;->mHandler:Landroid/os/Handler;
 
-    .line 66
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
 
     iput-object v0, p0, Lcom/android/server/UiModeManagerService;->mLock:Ljava/lang/Object;
 
-    .line 68
     iput v2, p0, Lcom/android/server/UiModeManagerService;->mDockState:I
 
-    .line 69
     iput v2, p0, Lcom/android/server/UiModeManagerService;->mLastBroadcastState:I
 
-    .line 71
     iput v1, p0, Lcom/android/server/UiModeManagerService;->mNightMode:I
 
-    .line 72
     iput-boolean v2, p0, Lcom/android/server/UiModeManagerService;->mCarModeEnabled:Z
 
-    .line 73
     iput-boolean v2, p0, Lcom/android/server/UiModeManagerService;->mCharging:Z
 
-    .line 80
     iput v2, p0, Lcom/android/server/UiModeManagerService;->mCurUiMode:I
 
-    .line 81
     iput v2, p0, Lcom/android/server/UiModeManagerService;->mSetUiMode:I
 
-    .line 83
     iput-boolean v2, p0, Lcom/android/server/UiModeManagerService;->mHoldingConfiguration:Z
 
-    .line 84
     new-instance v0, Landroid/content/res/Configuration;
 
     invoke-direct {v0}, Landroid/content/res/Configuration;-><init>()V
 
     iput-object v0, p0, Lcom/android/server/UiModeManagerService;->mConfiguration:Landroid/content/res/Configuration;
 
-    .line 107
     new-instance v0, Lcom/android/server/UiModeManagerService$1;
 
     invoke-direct {v0, p0}, Lcom/android/server/UiModeManagerService$1;-><init>(Lcom/android/server/UiModeManagerService;)V
 
     iput-object v0, p0, Lcom/android/server/UiModeManagerService;->mResultReceiver:Landroid/content/BroadcastReceiver;
 
-    .line 126
     new-instance v0, Lcom/android/server/UiModeManagerService$2;
 
     invoke-direct {v0, p0}, Lcom/android/server/UiModeManagerService$2;-><init>(Lcom/android/server/UiModeManagerService;)V
 
     iput-object v0, p0, Lcom/android/server/UiModeManagerService;->mDockModeReceiver:Landroid/content/BroadcastReceiver;
 
-    .line 135
     new-instance v0, Lcom/android/server/UiModeManagerService$3;
 
     invoke-direct {v0, p0}, Lcom/android/server/UiModeManagerService$3;-><init>(Lcom/android/server/UiModeManagerService;)V
 
     iput-object v0, p0, Lcom/android/server/UiModeManagerService;->mBatteryReceiver:Landroid/content/BroadcastReceiver;
 
-    .line 147
     new-instance v0, Lcom/android/server/UiModeManagerService$4;
 
     invoke-direct {v0, p0}, Lcom/android/server/UiModeManagerService$4;-><init>(Lcom/android/server/UiModeManagerService;)V
 
     iput-object v0, p0, Lcom/android/server/UiModeManagerService;->mThemeChangeReceiver:Landroid/content/BroadcastReceiver;
 
-    .line 154
     new-instance v0, Lcom/android/server/UiModeManagerService$5;
 
     invoke-direct {v0, p0}, Lcom/android/server/UiModeManagerService$5;-><init>(Lcom/android/server/UiModeManagerService;)V
 
     iput-object v0, p0, Lcom/android/server/UiModeManagerService;->mTwilightListener:Lcom/android/server/TwilightService$TwilightListener;
 
-    .line 163
     iput-object p1, p0, Lcom/android/server/UiModeManagerService;->mContext:Landroid/content/Context;
 
-    .line 164
     iput-object p2, p0, Lcom/android/server/UiModeManagerService;->mTwilightService:Lcom/android/server/TwilightService;
 
-    .line 166
     const-string v0, "uimode"
 
     invoke-static {v0, p0}, Landroid/os/ServiceManager;->addService(Ljava/lang/String;Landroid/os/IBinder;)V
 
-    .line 168
     iget-object v0, p0, Lcom/android/server/UiModeManagerService;->mContext:Landroid/content/Context;
 
     iget-object v3, p0, Lcom/android/server/UiModeManagerService;->mDockModeReceiver:Landroid/content/BroadcastReceiver;
@@ -220,14 +211,16 @@
 
     invoke-virtual {v0, v3, v4}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
 
-    .line 173
     iget-object v0, p0, Lcom/android/server/UiModeManagerService;->mContext:Landroid/content/Context;
 
     iget-object v3, p0, Lcom/android/server/UiModeManagerService;->mThemeChangeReceiver:Landroid/content/BroadcastReceiver;
 
     invoke-static {v0, v3}, Lcom/android/internal/app/ThemeUtils;->registerThemeChangeReceiver(Landroid/content/Context;Landroid/content/BroadcastReceiver;)V
 
-    .line 175
+    iget-object v0, p0, Lcom/android/server/UiModeManagerService;->mContext:Landroid/content/Context;
+
+    invoke-static {p0, v0}, Lcom/android/server/UiModeManagerService$Injector;->registerUIModeScaleChangedObserver(Lcom/android/server/UiModeManagerService;Landroid/content/Context;)V
+
     const-string v0, "power"
 
     invoke-virtual {p1, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
@@ -1115,32 +1108,26 @@
     :goto_2
     or-int/2addr v0, v1
 
-    .line 340
     :goto_3
     iput v0, p0, Lcom/android/server/UiModeManagerService;->mCurUiMode:I
 
-    .line 341
     iget-boolean v1, p0, Lcom/android/server/UiModeManagerService;->mHoldingConfiguration:Z
 
     if-nez v1, :cond_1
 
-    .line 342
     iget-object v1, p0, Lcom/android/server/UiModeManagerService;->mConfiguration:Landroid/content/res/Configuration;
 
     iput v0, v1, Landroid/content/res/Configuration;->uiMode:I
 
-    .line 344
     :cond_1
     return-void
 
-    .line 313
     .end local v0           #uiMode:I
     :cond_2
-    iget v0, p0, Lcom/android/server/UiModeManagerService;->mDefaultUiModeType:I
+    iget v0, p0, Lcom/android/server/UiModeManagerService;->mNormalType:I
 
     goto :goto_0
 
-    .line 316
     .restart local v0       #uiMode:I
     :cond_3
     iget v1, p0, Lcom/android/server/UiModeManagerService;->mDockState:I
