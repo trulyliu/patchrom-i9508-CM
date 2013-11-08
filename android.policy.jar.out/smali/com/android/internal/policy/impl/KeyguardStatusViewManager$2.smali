@@ -15,7 +15,7 @@
 
 
 # static fields
-.field static final synthetic $SwitchMap$com$android$internal$policy$impl$keyguard_obsolete$KeyguardStatusViewManager$StatusMode:[I
+.field static final synthetic $SwitchMap$com$android$internal$policy$impl$KeyguardStatusViewManager$StatusMode:[I
 
 .field static final synthetic $SwitchMap$com$android$internal$telephony$IccCardConstants$State:[I
 
@@ -34,10 +34,10 @@
 
     new-array v0, v0, [I
 
-    sput-object v0, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$2;->$SwitchMap$com$android$internal$policy$impl$keyguard_obsolete$KeyguardStatusViewManager$StatusMode:[I
+    sput-object v0, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$2;->$SwitchMap$com$android$internal$policy$impl$KeyguardStatusViewManager$StatusMode:[I
 
     :try_start_0
-    sget-object v0, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$2;->$SwitchMap$com$android$internal$policy$impl$keyguard_obsolete$KeyguardStatusViewManager$StatusMode:[I
+    sget-object v0, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$2;->$SwitchMap$com$android$internal$policy$impl$KeyguardStatusViewManager$StatusMode:[I
 
     sget-object v1, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$StatusMode;->Normal:Lcom/android/internal/policy/impl/KeyguardStatusViewManager$StatusMode;
 
@@ -53,7 +53,7 @@
 
     :goto_0
     :try_start_1
-    sget-object v0, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$2;->$SwitchMap$com$android$internal$policy$impl$keyguard_obsolete$KeyguardStatusViewManager$StatusMode:[I
+    sget-object v0, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$2;->$SwitchMap$com$android$internal$policy$impl$KeyguardStatusViewManager$StatusMode:[I
 
     sget-object v1, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$StatusMode;->NetworkLocked:Lcom/android/internal/policy/impl/KeyguardStatusViewManager$StatusMode;
 
@@ -69,7 +69,7 @@
 
     :goto_1
     :try_start_2
-    sget-object v0, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$2;->$SwitchMap$com$android$internal$policy$impl$keyguard_obsolete$KeyguardStatusViewManager$StatusMode:[I
+    sget-object v0, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$2;->$SwitchMap$com$android$internal$policy$impl$KeyguardStatusViewManager$StatusMode:[I
 
     sget-object v1, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$StatusMode;->SimMissing:Lcom/android/internal/policy/impl/KeyguardStatusViewManager$StatusMode;
 
@@ -85,7 +85,7 @@
 
     :goto_2
     :try_start_3
-    sget-object v0, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$2;->$SwitchMap$com$android$internal$policy$impl$keyguard_obsolete$KeyguardStatusViewManager$StatusMode:[I
+    sget-object v0, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$2;->$SwitchMap$com$android$internal$policy$impl$KeyguardStatusViewManager$StatusMode:[I
 
     sget-object v1, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$StatusMode;->SimPermDisabled:Lcom/android/internal/policy/impl/KeyguardStatusViewManager$StatusMode;
 
@@ -101,7 +101,7 @@
 
     :goto_3
     :try_start_4
-    sget-object v0, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$2;->$SwitchMap$com$android$internal$policy$impl$keyguard_obsolete$KeyguardStatusViewManager$StatusMode:[I
+    sget-object v0, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$2;->$SwitchMap$com$android$internal$policy$impl$KeyguardStatusViewManager$StatusMode:[I
 
     sget-object v1, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$StatusMode;->SimMissingLocked:Lcom/android/internal/policy/impl/KeyguardStatusViewManager$StatusMode;
 
@@ -117,7 +117,7 @@
 
     :goto_4
     :try_start_5
-    sget-object v0, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$2;->$SwitchMap$com$android$internal$policy$impl$keyguard_obsolete$KeyguardStatusViewManager$StatusMode:[I
+    sget-object v0, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$2;->$SwitchMap$com$android$internal$policy$impl$KeyguardStatusViewManager$StatusMode:[I
 
     sget-object v1, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$StatusMode;->SimLocked:Lcom/android/internal/policy/impl/KeyguardStatusViewManager$StatusMode;
 
@@ -133,7 +133,7 @@
 
     :goto_5
     :try_start_6
-    sget-object v0, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$2;->$SwitchMap$com$android$internal$policy$impl$keyguard_obsolete$KeyguardStatusViewManager$StatusMode:[I
+    sget-object v0, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$2;->$SwitchMap$com$android$internal$policy$impl$KeyguardStatusViewManager$StatusMode:[I
 
     sget-object v1, Lcom/android/internal/policy/impl/KeyguardStatusViewManager$StatusMode;->SimPukLocked:Lcom/android/internal/policy/impl/KeyguardStatusViewManager$StatusMode;
 
