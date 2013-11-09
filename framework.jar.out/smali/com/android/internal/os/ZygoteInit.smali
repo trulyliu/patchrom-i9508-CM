@@ -1423,6 +1423,8 @@
 
     invoke-static {v2, v3}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
+    invoke-static {}, Lcom/android/internal/os/ZygoteInit;->preloadMiuiResources()V
+
     .line 367
     sget-object v2, Lcom/android/internal/os/ZygoteInit;->mResources:Landroid/content/res/Resources;
 
