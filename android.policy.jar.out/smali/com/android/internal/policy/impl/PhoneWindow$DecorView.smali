@@ -13,12 +13,13 @@
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x12
+    accessFlags = 0x10
     name = "DecorView"
 .end annotation
 
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
+        Lcom/android/internal/policy/impl/PhoneWindow$DecorView$SearchActionModeCallbackWrapper;,
         Lcom/android/internal/policy/impl/PhoneWindow$DecorView$ActionModeCallbackWrapper;,
         Lcom/android/internal/policy/impl/PhoneWindow$DecorView$StylusGestureFilter;
     }
