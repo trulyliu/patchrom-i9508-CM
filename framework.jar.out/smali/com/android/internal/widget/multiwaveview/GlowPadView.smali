@@ -236,27 +236,21 @@
     .line 132
     new-instance v9, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
-    const/4 v10, 0x0
-
-    invoke-direct {v9, p0, v10}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;Lcom/android/internal/widget/multiwaveview/GlowPadView$1;)V
+    invoke-direct {v9, p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;)V
 
     iput-object v9, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mWaveAnimations:Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
     .line 133
     new-instance v9, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
-    const/4 v10, 0x0
-
-    invoke-direct {v9, p0, v10}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;Lcom/android/internal/widget/multiwaveview/GlowPadView$1;)V
+    invoke-direct {v9, p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;)V
 
     iput-object v9, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mTargetAnimations:Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
     .line 134
     new-instance v9, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
-    const/4 v10, 0x0
-
-    invoke-direct {v9, p0, v10}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;Lcom/android/internal/widget/multiwaveview/GlowPadView$1;)V
+    invoke-direct {v9, p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;)V
 
     iput-object v9, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mGlowAnimations:Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
@@ -5577,23 +5571,23 @@
     return-object v0
 .end method
 
-.method getTargetDrawables()Ljava/util/ArrayList;
-    .locals 1
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "()",
-            "Ljava/util/ArrayList",
-            "<",
-            "Lcom/android/internal/widget/multiwaveview/TargetDrawable;",
-            ">;"
-        }
-    .end annotation
-
-    .prologue
-    iget-object v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mTargetDrawables:Ljava/util/ArrayList;
-
-    return-object v0
-.end method
+#.method getTargetDrawables()Ljava/util/ArrayList;
+#    .locals 1
+#    .annotation system Ldalvik/annotation/Signature;
+#        value = {
+#            "()",
+#            "Ljava/util/ArrayList",
+#            "<",
+#            "Lcom/android/internal/widget/multiwaveview/TargetDrawable;",
+#            ">;"
+#        }
+#    .end annotation
+#
+#    .prologue
+#    iget-object v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mTargetDrawables:Ljava/util/ArrayList;
+#
+#    return-object v0
+#.end method
 
 .method public getTargetPosition(I)I
     .locals 3
@@ -5889,65 +5883,50 @@
 
     add-float v1, v4, v5
 
-    .line 1193
     .local v1, newWaveCenterY:F
     iget-boolean v4, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mInitialLayout:Z
 
     if-eqz v4, :cond_0
 
-    .line 1194
     invoke-direct {p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->stopAndHideWaveAnimation()V
 
-    .line 1195
-    invoke-direct {p0, v6, v6}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->hideTargets(ZZ)V
+    invoke-virtual {p0, v6, v6}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->hideTargets(ZZ)V
 
-    .line 1196
     iput-boolean v6, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mInitialLayout:Z
 
-    .line 1199
     :cond_0
     iget-object v4, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mOuterRing:Lcom/android/internal/widget/multiwaveview/TargetDrawable;
 
     invoke-virtual {v4, v0}, Lcom/android/internal/widget/multiwaveview/TargetDrawable;->setPositionX(F)V
 
-    .line 1200
     iget-object v4, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mOuterRing:Lcom/android/internal/widget/multiwaveview/TargetDrawable;
 
     invoke-virtual {v4, v1}, Lcom/android/internal/widget/multiwaveview/TargetDrawable;->setPositionY(F)V
 
-    .line 1202
     iget-object v4, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mPointCloud:Lcom/android/internal/widget/multiwaveview/PointCloud;
 
     iget v5, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mRingScaleFactor:F
 
     invoke-virtual {v4, v5}, Lcom/android/internal/widget/multiwaveview/PointCloud;->setScale(F)V
 
-    .line 1204
     iget-object v4, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mHandleDrawable:Lcom/android/internal/widget/multiwaveview/TargetDrawable;
 
     invoke-virtual {v4, v0}, Lcom/android/internal/widget/multiwaveview/TargetDrawable;->setPositionX(F)V
 
-    .line 1205
     iget-object v4, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mHandleDrawable:Lcom/android/internal/widget/multiwaveview/TargetDrawable;
 
     invoke-virtual {v4, v1}, Lcom/android/internal/widget/multiwaveview/TargetDrawable;->setPositionY(F)V
 
-    .line 1207
     invoke-direct {p0, v0, v1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->updateTargetPositions(FF)V
 
-    .line 1208
     invoke-direct {p0, v0, v1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->updatePointCloudPosition(FF)V
 
-    .line 1209
     invoke-direct {p0, v0, v1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->updateGlowPosition(FF)V
 
-    .line 1211
     iput v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mWaveCenterX:F
 
-    .line 1212
     iput v1, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mWaveCenterY:F
 
-    .line 1215
     return-void
 .end method
 
