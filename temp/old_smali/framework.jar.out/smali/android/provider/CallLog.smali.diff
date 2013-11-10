@@ -1,0 +1,20 @@
+*** ./smali/android/provider/CallLog.smali	2013-11-10 11:53:25.549672843 +0800
+--- /opt/OpenSouce/MonkeyMiCode/9508cm.new/temp/new_smali/framework.jar.out/./smali/android/provider/CallLog.smali	2013-11-10 11:54:45.089674880 +0800
+***************
+*** 6,12 ****
+  # annotations
+  .annotation system Ldalvik/annotation/MemberClasses;
+      value = {
+!         Landroid/provider/CallLog$Calls;
+      }
+  .end annotation
+  
+--- 6,13 ----
+  # annotations
+  .annotation system Ldalvik/annotation/MemberClasses;
+      value = {
+!         Landroid/provider/CallLog$Calls;,
+!         Landroid/provider/CallLog$Injector;
+      }
+  .end annotation
+  

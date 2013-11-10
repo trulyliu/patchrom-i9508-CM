@@ -1,0 +1,18 @@
+*** ./smali/android/nfc/NfcManager.smali	2013-11-10 11:53:25.141672833 +0800
+--- /opt/OpenSouce/MonkeyMiCode/9508cm.new/temp/new_smali/framework.jar.out/./smali/android/nfc/NfcManager.smali	2013-11-10 11:54:44.653674869 +0800
+***************
+*** 64,66 ****
+--- 64,76 ----
+  
+      return-object v0
+  .end method
++ 
++ .method public setPollDuration(I)I
++     .locals 1
++     .parameter "pollDurationMs"
++ 
++     .prologue
++     const/4 v0, 0x0
++ 
++     return v0
++ .end method

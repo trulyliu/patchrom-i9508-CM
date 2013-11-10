@@ -1,0 +1,21 @@
+*** ./smali/com/android/server/LightsService.smali	2013-11-10 11:52:17.313671096 +0800
+--- /opt/OpenSouce/MonkeyMiCode/9508cm.new/temp/new_smali/services.jar.out/./smali/com/android/server/LightsService.smali	2013-11-10 11:53:36.573673125 +0800
+***************
+*** 207,209 ****
+--- 207,222 ----
+  
+      return-object v0
+  .end method
++ 
++ .method setLight(ILcom/android/server/LightsService$Light;)V
++     .locals 1
++     .parameter "id"
++     .parameter "light"
++ 
++     .prologue
++     iget-object v0, p0, Lcom/android/server/LightsService;->mLights:[Lcom/android/server/LightsService$Light;
++ 
++     aput-object p2, v0, p1
++ 
++     return-void
++ .end method

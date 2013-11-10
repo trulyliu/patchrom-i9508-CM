@@ -1,0 +1,13 @@
+*** ./smali/com/android/internal/telephony/AdnRecordCache.smali	2013-11-10 11:52:32.709671490 +0800
+--- /opt/OpenSouce/MonkeyMiCode/9508cm.new/temp/new_smali/telephony-common.jar.out/./smali/com/android/internal/telephony/AdnRecordCache.smali	2013-11-10 11:53:53.349673555 +0800
+***************
+*** 1,4 ****
+! .class public final Lcom/android/internal/telephony/AdnRecordCache;
+  .super Landroid/os/Handler;
+  .source "AdnRecordCache.java"
+  
+--- 1,4 ----
+! .class public Lcom/android/internal/telephony/AdnRecordCache;
+  .super Landroid/os/Handler;
+  .source "AdnRecordCache.java"
+  

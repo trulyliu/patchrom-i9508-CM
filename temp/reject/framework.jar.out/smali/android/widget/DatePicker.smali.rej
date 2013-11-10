@@ -1,0 +1,25 @@
+*** DatePicker.smali	2013-11-10 11:52:51.601671974 +0800
+--- DatePicker.smali	2013-11-10 11:54:12.161674037 +0800
+***************
+*** 247,252 ****
+      invoke-direct {v10, v0}, Landroid/widget/DatePicker$1;-><init>(Landroid/widget/DatePicker;)V
+  
+      .local v10, onChangeListener:Landroid/widget/NumberPicker$OnValueChangeListener;
+      const v13, 0x1020279
+  
+      move-object/from16 v0, p0
+--- 254,267 ----
+      invoke-direct {v10, v0}, Landroid/widget/DatePicker$1;-><init>(Landroid/widget/DatePicker;)V
+  
+      .local v10, onChangeListener:Landroid/widget/NumberPicker$OnValueChangeListener;
++     new-instance v10, Landroid/widget/DatePicker$OnDateChangeListener;
++ 
++     .end local v10           #onChangeListener:Landroid/widget/NumberPicker$OnValueChangeListener;
++     move-object/from16 v0, p0
++ 
++     invoke-direct {v10, v0}, Landroid/widget/DatePicker$OnDateChangeListener;-><init>(Landroid/widget/DatePicker;)V
++ 
++     .restart local v10       #onChangeListener:Landroid/widget/NumberPicker$OnValueChangeListener;
+      const v13, 0x1020279
+  
+      move-object/from16 v0, p0

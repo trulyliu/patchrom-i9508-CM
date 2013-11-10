@@ -1,0 +1,38 @@
+*** ./smali/android/app/DownloadManager.smali	2013-11-10 11:53:11.537672484 +0800
+--- /opt/OpenSouce/MonkeyMiCode/9508cm.new/temp/new_smali/framework.jar.out/./smali/android/app/DownloadManager.smali	2013-11-10 11:54:30.977674518 +0800
+***************
+*** 8,14 ****
+      value = {
+          Landroid/app/DownloadManager$CursorTranslator;,
+          Landroid/app/DownloadManager$Query;,
+!         Landroid/app/DownloadManager$Request;
+      }
+  .end annotation
+  
+--- 8,15 ----
+      value = {
+          Landroid/app/DownloadManager$CursorTranslator;,
+          Landroid/app/DownloadManager$Query;,
+!         Landroid/app/DownloadManager$Request;,
+!         Landroid/app/DownloadManager$Injector;
+      }
+  .end annotation
+  
+***************
+*** 639,644 ****
+--- 640,654 ----
+      return-wide v1
+  .end method
+  
++ .method getBaseUri()Landroid/net/Uri;
++     .locals 1
++ 
++     .prologue
++     iget-object v0, p0, Landroid/app/DownloadManager;->mBaseUri:Landroid/net/Uri;
++ 
++     return-object v0
++ .end method
++ 
+  .method getDownloadUri(J)Landroid/net/Uri;
+      .locals 1
+      .parameter "id"

@@ -1,0 +1,19 @@
+*** ./smali/android/os/IVibratorService.smali	2013-11-10 11:53:23.841672799 +0800
+--- /opt/OpenSouce/MonkeyMiCode/9508cm.new/temp/new_smali/framework.jar.out/./smali/android/os/IVibratorService.smali	2013-11-10 11:54:43.325674835 +0800
+***************
+*** 39,44 ****
+--- 39,52 ----
+      .end annotation
+  .end method
+  
++ .method public abstract vibrateEx([BLandroid/os/IBinder;)V
++     .annotation system Ldalvik/annotation/Throws;
++         value = {
++             Landroid/os/RemoteException;
++         }
++     .end annotation
++ .end method
++ 
+  .method public abstract vibratePattern([JILandroid/os/IBinder;)V
+      .annotation system Ldalvik/annotation/Throws;
+          value = {

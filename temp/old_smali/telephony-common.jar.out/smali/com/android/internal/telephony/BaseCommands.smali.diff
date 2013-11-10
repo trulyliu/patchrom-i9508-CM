@@ -1,0 +1,22 @@
+*** ./smali/com/android/internal/telephony/BaseCommands.smali	2013-11-10 11:52:31.613671462 +0800
+--- /opt/OpenSouce/MonkeyMiCode/9508cm.new/temp/new_smali/telephony-common.jar.out/./smali/com/android/internal/telephony/BaseCommands.smali	2013-11-10 11:53:52.177673525 +0800
+***************
+*** 313,318 ****
+--- 313,329 ----
+      return-void
+  .end method
+  
++ .method public static getLteOnCdmaModeStatic()I
++     .locals 1
++ 
++     .prologue
++     invoke-static {}, Landroid/telephony/TelephonyManager;->getLteOnCdmaModeStatic()I
++ 
++     move-result v0
++ 
++     return v0
++ .end method
++ 
+  
+  # virtual methods
+  .method public getLteOnCdmaMode()I

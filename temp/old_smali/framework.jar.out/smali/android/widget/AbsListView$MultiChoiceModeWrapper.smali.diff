@@ -1,0 +1,28 @@
+*** ./smali/android/widget/AbsListView$MultiChoiceModeWrapper.smali	2013-11-10 11:52:49.405671918 +0800
+--- /opt/OpenSouce/MonkeyMiCode/9508cm.new/temp/new_smali/framework.jar.out/./smali/android/widget/AbsListView$MultiChoiceModeWrapper.smali	2013-11-10 11:54:10.309673989 +0800
+***************
+*** 160,174 ****
+  
+      iget-object v0, p0, Landroid/widget/AbsListView$MultiChoiceModeWrapper;->this$0:Landroid/widget/AbsListView;
+  
+!     invoke-virtual {v0}, Landroid/widget/AbsListView;->getCheckedItemCount()I
+  
+-     move-result v0
+- 
+-     if-nez v0, :cond_0
+- 
+-     invoke-virtual {p1}, Landroid/view/ActionMode;->finish()V
+- 
+-     :cond_0
+      return-void
+  .end method
+  
+--- 160,167 ----
+  
+      iget-object v0, p0, Landroid/widget/AbsListView$MultiChoiceModeWrapper;->this$0:Landroid/widget/AbsListView;
+  
+!     invoke-static {v0, p1}, Landroid/widget/AbsListView$Injector;->finishActionModeIfNeeded(Landroid/widget/AbsListView;Landroid/view/ActionMode;)V
+  
+      return-void
+  .end method
+  

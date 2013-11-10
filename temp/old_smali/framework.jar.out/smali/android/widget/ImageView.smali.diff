@@ -1,0 +1,19 @@
+*** ./smali/android/widget/ImageView.smali	2013-11-10 11:52:48.593671897 +0800
+--- /opt/OpenSouce/MonkeyMiCode/9508cm.new/temp/new_smali/framework.jar.out/./smali/android/widget/ImageView.smali	2013-11-10 11:54:09.585673971 +0800
+***************
+*** 1177,1183 ****
+  
+      const/4 v6, 0x0
+  
+!     invoke-static {v5, v6}, Landroid/graphics/drawable/Drawable;->createFromStream(Ljava/io/InputStream;Ljava/lang/String;)Landroid/graphics/drawable/Drawable;
+      :try_end_2
+      .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_2
+  
+--- 1177,1183 ----
+  
+      const/4 v6, 0x0
+  
+!     invoke-static {v6, v6, v5, v6, v6}, Landroid/graphics/drawable/Drawable;->createFromResourceStreamAndCloseStream(Landroid/content/res/Resources;Landroid/util/TypedValue;Ljava/io/InputStream;Ljava/lang/String;Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/drawable/Drawable;
+      :try_end_2
+      .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_2
+  

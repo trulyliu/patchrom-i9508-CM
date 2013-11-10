@@ -1,0 +1,20 @@
+*** ./smali/android/preference/PreferenceFrameLayout.smali	2013-11-10 11:52:37.621671616 +0800
+--- /opt/OpenSouce/MonkeyMiCode/9508cm.new/temp/new_smali/framework.jar.out/./smali/android/preference/PreferenceFrameLayout.smali	2013-11-10 11:53:57.757673668 +0800
+***************
+*** 6,12 ****
+  # annotations
+  .annotation system Ldalvik/annotation/MemberClasses;
+      value = {
+!         Landroid/preference/PreferenceFrameLayout$LayoutParams;
+      }
+  .end annotation
+  
+--- 6,13 ----
+  # annotations
+  .annotation system Ldalvik/annotation/MemberClasses;
+      value = {
+!         Landroid/preference/PreferenceFrameLayout$LayoutParams;,
+!         Landroid/preference/PreferenceFrameLayout$Injector;
+      }
+  .end annotation
+  

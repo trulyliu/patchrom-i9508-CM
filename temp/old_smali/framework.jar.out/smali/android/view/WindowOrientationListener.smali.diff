@@ -1,0 +1,19 @@
+*** ./smali/android/view/WindowOrientationListener.smali	2013-11-10 11:53:00.801672209 +0800
+--- /opt/OpenSouce/MonkeyMiCode/9508cm.new/temp/new_smali/framework.jar.out/./smali/android/view/WindowOrientationListener.smali	2013-11-10 11:54:20.405674248 +0800
+***************
+*** 57,63 ****
+      .parameter "context"
+  
+      .prologue
+!     const/4 v0, 0x2
+  
+      invoke-direct {p0, p1, v0}, Landroid/view/WindowOrientationListener;-><init>(Landroid/content/Context;I)V
+  
+--- 57,63 ----
+      .parameter "context"
+  
+      .prologue
+!     const/4 v0, 0x3
+  
+      invoke-direct {p0, p1, v0}, Landroid/view/WindowOrientationListener;-><init>(Landroid/content/Context;I)V
+  

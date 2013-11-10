@@ -1,0 +1,20 @@
+*** ./smali/android/app/LauncherActivity.smali	2013-11-10 11:53:10.309672453 +0800
+--- /opt/OpenSouce/MonkeyMiCode/9508cm.new/temp/new_smali/framework.jar.out/./smali/android/app/LauncherActivity.smali	2013-11-10 11:54:29.709674486 +0800
+***************
+*** 8,14 ****
+      value = {
+          Landroid/app/LauncherActivity$IconResizer;,
+          Landroid/app/LauncherActivity$ActivityAdapter;,
+!         Landroid/app/LauncherActivity$ListItem;
+      }
+  .end annotation
+  
+--- 8,15 ----
+      value = {
+          Landroid/app/LauncherActivity$IconResizer;,
+          Landroid/app/LauncherActivity$ActivityAdapter;,
+!         Landroid/app/LauncherActivity$ListItem;,
+!         Landroid/app/LauncherActivity$Injector;
+      }
+  .end annotation
+  

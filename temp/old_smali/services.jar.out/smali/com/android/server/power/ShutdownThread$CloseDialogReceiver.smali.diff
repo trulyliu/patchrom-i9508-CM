@@ -1,0 +1,13 @@
+*** ./smali/com/android/server/power/ShutdownThread$CloseDialogReceiver.smali	2013-11-10 11:52:19.213671145 +0800
+--- /opt/OpenSouce/MonkeyMiCode/9508cm.new/temp/new_smali/services.jar.out/./smali/com/android/server/power/ShutdownThread$CloseDialogReceiver.smali	2013-11-10 11:53:38.625673178 +0800
+***************
+*** 56,61 ****
+--- 56,63 ----
+  
+      invoke-virtual {v0, p0}, Landroid/content/Context;->unregisterReceiver(Landroid/content/BroadcastReceiver;)V
+  
++     invoke-static {p1}, Lcom/android/server/power/ShutdownThread$Injector;->onDismiss(Landroid/content/DialogInterface;)V
++ 
+      return-void
+  .end method
+  
