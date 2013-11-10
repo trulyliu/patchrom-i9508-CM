@@ -1,0 +1,4 @@
+/boot   emmc    /dev/block/mmcblk0p20
+/system ext4 /dev/block/mmcblk0p16
+/cache ext4 /dev/block/mmcblk0p18
+/data ext4 /dev/block/mmcblk0p29
