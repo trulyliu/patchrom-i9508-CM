@@ -1087,9 +1087,9 @@
 
     iget-object v2, p1, Landroid/content/res/Configuration;->extraConfig:Lmiui/content/res/ExtraConfiguration;
  
-    if-eqz v1 :cond_11
+    if-eqz v1, :cond_11
     
-    if-eqz v2 :cond_11
+    if-eqz v2, :cond_11
     
     invoke-virtual {v1, v2}, Lmiui/content/res/ExtraConfiguration;->diff(Lmiui/content/res/ExtraConfiguration;)I
 
