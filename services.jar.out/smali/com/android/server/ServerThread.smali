@@ -817,15 +817,15 @@
     invoke-static {v7, v9}, Landroid/util/Slog;->i(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 312
-    new-instance v6, Lcom/android/server/LightsService;
+    new-instance v6, Lcom/android/server/MiuiLightsService;
 
-    invoke-direct {v6, v5}, Lcom/android/server/LightsService;-><init>(Landroid/content/Context;)V
+    invoke-direct {v6, v5}, Lcom/android/server/MiuiLightsService;-><init>(Landroid/content/Context;)V
     :try_end_a
     .catch Ljava/lang/RuntimeException; {:try_start_a .. :try_end_a} :catch_5c
 
     .line 314
-    .end local v98           #lights:Lcom/android/server/LightsService;
-    .local v6, lights:Lcom/android/server/LightsService;
+    .end local v98           #lights:Lcom/android/server/MiuiLightsService;
+    .local v6, lights:Lcom/android/server/MiuiLightsService;
     :try_start_b
     const-string v7, "SystemServer"
 

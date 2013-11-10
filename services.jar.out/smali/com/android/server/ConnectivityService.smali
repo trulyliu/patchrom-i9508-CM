@@ -1499,7 +1499,7 @@
     .line 503
     .end local v8           #arr$:[Landroid/net/NetworkConfig;
     :cond_13
-    const/16 v2, 0xe
+    const/16 v2, 0xf
 
     new-array v2, v2, [Ljava/util/ArrayList;
 

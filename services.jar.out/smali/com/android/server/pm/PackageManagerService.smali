@@ -3232,6 +3232,8 @@
 
     iput-object v2, v0, Lcom/android/server/pm/PackageManagerService;->mRequiredVerifierPackage:Ljava/lang/String;
 
+    invoke-static {}, Lcom/android/server/pm/ExtraPackageManagerServices;->postScanPackages()V
+
     .line 1353
     monitor-exit v47
     :try_end_9
@@ -17508,6 +17510,12 @@
     .end local v25           #i:I
     .end local v50           #renamed:Ljava/lang/String;
     :cond_1a
+    move-object/from16 v0, p1
+
+    move-object/from16 v1, v46
+
+    invoke-static {v0, v1}, Lcom/android/server/pm/PackageManagerService$Injector;->addMiuiExtendFlags(Landroid/content/pm/PackageParser$Package;Lcom/android/server/pm/PackageSetting;)V
+
     move-object/from16 v0, v46
 
     iget-object v3, v0, Lcom/android/server/pm/PackageSetting;->origPackage:Lcom/android/server/pm/PackageSettingBase;
