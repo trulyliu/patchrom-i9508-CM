@@ -236,27 +236,21 @@
     .line 132
     new-instance v9, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
-    const/4 v10, 0x0
-
-    invoke-direct {v9, p0, v10}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;Lcom/android/internal/widget/multiwaveview/GlowPadView$1;)V
+   invoke-direct {v9, p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;)V
 
     iput-object v9, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mWaveAnimations:Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
     .line 133
     new-instance v9, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
-    const/4 v10, 0x0
-
-    invoke-direct {v9, p0, v10}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;Lcom/android/internal/widget/multiwaveview/GlowPadView$1;)V
+    invoke-direct {v9, p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;)V
 
     iput-object v9, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mTargetAnimations:Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
     .line 134
     new-instance v9, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
-    const/4 v10, 0x0
-
-    invoke-direct {v9, p0, v10}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;Lcom/android/internal/widget/multiwaveview/GlowPadView$1;)V
+    invoke-direct {v9, p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;)V
 
     iput-object v9, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mGlowAnimations:Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
@@ -1470,7 +1464,7 @@
     invoke-virtual {v2}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;->stop()V
 
     :cond_0
-    invoke-direct {p0, v3, v3}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->hideTargets(ZZ)V
+    invoke-virtual {p0, v3, v3}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->hideTargets(ZZ)V
 
     :goto_1
     invoke-direct {p0, v3}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->setGrabbedState(I)V
@@ -3019,7 +3013,7 @@
 
     const/4 v5, 0x6
 
-    const-string/jumbo v6, "x"
+    const-string v6, "x"
 
     aput-object v6, v4, v5
 
@@ -3033,7 +3027,7 @@
 
     const/16 v5, 0x8
 
-    const-string/jumbo v6, "y"
+    const-string v6, "y"
 
     aput-object v6, v4, v5
 
@@ -3047,7 +3041,7 @@
 
     const/16 v5, 0xa
 
-    const-string/jumbo v6, "onUpdate"
+    const-string v6, "onUpdate"
 
     aput-object v6, v4, v5
 
@@ -3059,7 +3053,7 @@
 
     const/16 v5, 0xc
 
-    const-string/jumbo v6, "onComplete"
+    const-string v6, "onComplete"
 
     aput-object v6, v4, v5
 
@@ -3200,7 +3194,7 @@
 
     const/4 v14, 0x4
 
-    const-string/jumbo v15, "scaleX"
+    const-string v15, "scaleX"
 
     aput-object v15, v13, v14
 
@@ -3214,7 +3208,7 @@
 
     const/4 v14, 0x6
 
-    const-string/jumbo v15, "scaleY"
+    const-string v15, "scaleY"
 
     aput-object v15, v13, v14
 
@@ -3242,7 +3236,7 @@
 
     const/16 v14, 0xa
 
-    const-string/jumbo v15, "onUpdate"
+    const-string v15, "onUpdate"
 
     aput-object v15, v13, v14
 
@@ -3354,7 +3348,7 @@
 
     const/4 v15, 0x4
 
-    const-string/jumbo v16, "scaleX"
+    const-string v16, "scaleX"
 
     aput-object v16, v14, v15
 
@@ -3368,7 +3362,7 @@
 
     const/4 v15, 0x6
 
-    const-string/jumbo v16, "scaleY"
+    const-string v16, "scaleY"
 
     aput-object v16, v14, v15
 
@@ -3396,7 +3390,7 @@
 
     const/16 v15, 0xa
 
-    const-string/jumbo v16, "onUpdate"
+    const-string v16, "onUpdate"
 
     aput-object v16, v14, v15
 
@@ -3412,7 +3406,7 @@
 
     const/16 v15, 0xc
 
-    const-string/jumbo v16, "onComplete"
+    const-string v16, "onComplete"
 
     aput-object v16, v14, v15
 
@@ -3678,7 +3672,7 @@
     invoke-direct {p0, v0, v1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->updatePointCloudPosition(FF)V
 
     .line 656
-    invoke-direct {p0, v2, v2}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->hideTargets(ZZ)V
+    invoke-virtual {p0, v2, v2}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->hideTargets(ZZ)V
 
     .line 657
     return-void
@@ -4105,7 +4099,7 @@
 
     const/4 v5, 0x6
 
-    const-string/jumbo v6, "onUpdate"
+    const-string v6, "onUpdate"
 
     aput-object v6, v4, v5
 
@@ -4117,7 +4111,7 @@
 
     const/16 v5, 0x8
 
-    const-string/jumbo v6, "onComplete"
+    const-string v6, "onComplete"
 
     aput-object v6, v4, v5
 
@@ -4236,7 +4230,7 @@
 
     const/4 v10, 0x4
 
-    const-string/jumbo v11, "scaleX"
+    const-string v11, "scaleX"
 
     aput-object v11, v9, v10
 
@@ -4252,7 +4246,7 @@
 
     const/4 v10, 0x6
 
-    const-string/jumbo v11, "scaleY"
+    const-string v11, "scaleY"
 
     aput-object v11, v9, v10
 
@@ -4282,7 +4276,7 @@
 
     const/16 v10, 0xa
 
-    const-string/jumbo v11, "onUpdate"
+    const-string v11, "onUpdate"
 
     aput-object v11, v9, v10
 
@@ -4374,7 +4368,7 @@
 
     const/4 v11, 0x4
 
-    const-string/jumbo v12, "scaleX"
+    const-string v12, "scaleX"
 
     aput-object v12, v10, v11
 
@@ -4388,7 +4382,7 @@
 
     const/4 v11, 0x6
 
-    const-string/jumbo v12, "scaleY"
+    const-string v12, "scaleY"
 
     aput-object v12, v10, v11
 
@@ -4416,7 +4410,7 @@
 
     const/16 v11, 0xa
 
-    const-string/jumbo v12, "onUpdate"
+    const-string v12, "onUpdate"
 
     aput-object v12, v10, v11
 
@@ -4428,7 +4422,7 @@
 
     const/16 v11, 0xc
 
-    const-string/jumbo v12, "onComplete"
+    const-string v12, "onComplete"
 
     aput-object v12, v10, v11
 
@@ -4647,7 +4641,7 @@
 
     const/4 v5, 0x4
 
-    const-string/jumbo v6, "radius"
+    const-string v6, "radius"
 
     aput-object v6, v4, v5
 
@@ -4665,7 +4659,7 @@
 
     const/4 v5, 0x6
 
-    const-string/jumbo v6, "onUpdate"
+    const-string v6, "onUpdate"
 
     aput-object v6, v4, v5
 
@@ -4677,7 +4671,7 @@
 
     const/16 v5, 0x8
 
-    const-string/jumbo v6, "onComplete"
+    const-string v6, "onComplete"
 
     aput-object v6, v4, v5
 
@@ -5899,7 +5893,7 @@
     invoke-direct {p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->stopAndHideWaveAnimation()V
 
     .line 1195
-    invoke-direct {p0, v6, v6}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->hideTargets(ZZ)V
+    invoke-virtual {p0, v6, v6}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->hideTargets(ZZ)V
 
     .line 1196
     iput-boolean v6, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mInitialLayout:Z
@@ -6655,7 +6649,7 @@
 
     move-result-object v0
 
-    const-string/jumbo v1, "vibrator"
+    const-string v1, "vibrator"
 
     invoke-virtual {v0, v1}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 

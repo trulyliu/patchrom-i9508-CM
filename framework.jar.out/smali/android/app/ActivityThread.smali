@@ -11481,6 +11481,8 @@
 
     .line 3972
     :cond_4
+    invoke-static {v3}, Landroid/app/MiuiThemeHelper;->handleExtraConfigurationChanges(I)V
+
     move-object/from16 v0, p1
 
     iget-object v14, v0, Landroid/content/res/Configuration;->locale:Ljava/util/Locale;
@@ -13551,15 +13553,15 @@
 
     .line 1747
     :cond_7
-    new-instance v12, Landroid/content/res/Resources;
+    new-instance v12, Landroid/content/res/MiuiResources;
 
     .end local v12           #r:Landroid/content/res/Resources;
     move-object/from16 v0, p4
 
-    invoke-direct {v12, v7, v9, v8, v0}, Landroid/content/res/Resources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;Landroid/content/res/CompatibilityInfo;)V
+    invoke-direct {v12, v7, v9, v8, v0}, Landroid/content/res/MiuiResources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;Landroid/content/res/CompatibilityInfo;)V
 
     .line 1754
-    .restart local v12       #r:Landroid/content/res/Resources;
+    .restart local v12       #r:Landroid/content/res/MiuiResources;
     iget-object v3, p0, Landroid/app/ActivityThread;->mPackages:Ljava/util/HashMap;
 
     monitor-enter v3
