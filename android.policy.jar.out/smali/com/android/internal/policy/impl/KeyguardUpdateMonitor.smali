@@ -7,7 +7,8 @@
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
         Lcom/android/internal/policy/impl/KeyguardUpdateMonitor$BatteryStatus;,
-        Lcom/android/internal/policy/impl/KeyguardUpdateMonitor$SimArgs;
+        Lcom/android/internal/policy/impl/KeyguardUpdateMonitor$SimArgs;,
+        Lcom/android/internal/policy/impl/KeyguardUpdateMonitor$Injector;
     }
 .end annotation
 
@@ -19,7 +20,7 @@
 
 .field private static final FAILED_BIOMETRIC_UNLOCK_ATTEMPTS_BEFORE_BACKUP:I = 0x3
 
-.field private static final LOW_BATTERY_THRESHOLD:I = 0x14
+.field static final LOW_BATTERY_THRESHOLD:I = 0x14
 
 .field private static final MSG_BATTERY_UPDATE:I = 0x12e
 
@@ -82,6 +83,8 @@
 
 .field private mSimState:Lcom/android/internal/telephony/IccCardConstants$State;
 
+.field private mSkipSimStateChange:Z
+
 .field private mTelephonyPlmn:Ljava/lang/CharSequence;
 
 .field private mTelephonySpn:Ljava/lang/CharSequence;
@@ -97,45 +100,38 @@
 
     const/4 v3, 0x0
 
-    .line 286
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 82
+    iput-boolean v3, p0, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->mSkipSimStateChange:Z
+
     sget-object v1, Lcom/android/internal/telephony/IccCardConstants$State;->READY:Lcom/android/internal/telephony/IccCardConstants$State;
 
     iput-object v1, p0, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->mSimState:Lcom/android/internal/telephony/IccCardConstants$State;
 
-    .line 92
     iput v3, p0, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->mFailedAttempts:I
 
-    .line 93
     iput v3, p0, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->mFailedBiometricUnlockAttempts:I
 
-    .line 97
     invoke-static {}, Lcom/google/android/collect/Lists;->newArrayList()Ljava/util/ArrayList;
 
     move-result-object v1
 
     iput-object v1, p0, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->mCallbacks:Ljava/util/ArrayList;
 
-    .line 100
     new-instance v1, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor$1;
 
     invoke-direct {v1, p0}, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor$1;-><init>(Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;)V
 
     iput-object v1, p0, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->mHandler:Landroid/os/Handler;
 
-    .line 141
     new-instance v1, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor$2;
 
     invoke-direct {v1, p0}, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor$2;-><init>(Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;)V
 
     iput-object v1, p0, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->mBroadcastReceiver:Landroid/content/BroadcastReceiver;
 
-    .line 287
     iput-object p1, p0, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->mContext:Landroid/content/Context;
 
-    .line 289
     iget-object v1, p0, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->mContext:Landroid/content/Context;
 
     invoke-virtual {v1}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
@@ -662,10 +658,15 @@
     .parameter "simArgs"
 
     .prologue
-    .line 458
+    iget-boolean v2, p0, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->mSkipSimStateChange:Z
+
+    if-eqz v2, :cond_miui_0
+
+    return-void
+
+    :cond_miui_0
     iget-object v1, p1, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor$SimArgs;->simState:Lcom/android/internal/telephony/IccCardConstants$State;
 
-    .line 465
     .local v1, state:Lcom/android/internal/telephony/IccCardConstants$State;
     sget-object v2, Lcom/android/internal/telephony/IccCardConstants$State;->UNKNOWN:Lcom/android/internal/telephony/IccCardConstants$State;
 
@@ -937,6 +938,15 @@
 
     .line 615
     return-void
+.end method
+
+.method public getBatteryStatus()Lcom/android/internal/policy/impl/KeyguardUpdateMonitor$BatteryStatus;
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->mBatteryStatus:Lcom/android/internal/policy/impl/KeyguardUpdateMonitor$BatteryStatus;
+
+    return-object v0
 .end method
 
 .method public getFailedAttempts()I
@@ -1377,6 +1387,17 @@
     goto :goto_0
 .end method
 
+.method isSimPinSecure()Z
+    .locals 1
+
+    .prologue
+    invoke-virtual {p0}, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->isSimLocked()Z
+
+    move-result v0
+
+    return v0
+.end method
+
 .method public registerCallback(Lcom/android/internal/policy/impl/KeyguardUpdateMonitorCallback;)V
     .locals 2
     .parameter "callback"
@@ -1515,5 +1536,41 @@
     invoke-direct {p0, v0}, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->handleSimStateChange(Lcom/android/internal/policy/impl/KeyguardUpdateMonitor$SimArgs;)V
 
     .line 590
+    return-void
+.end method
+
+.method public reportSimUnlocked(I)V
+    .locals 2
+    .parameter "simId"
+
+    .prologue
+    new-instance v0, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor$SimArgs;
+
+    sget-object v1, Lcom/android/internal/telephony/IccCardConstants$State;->READY:Lcom/android/internal/telephony/IccCardConstants$State;
+
+    invoke-direct {v0, v1}, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor$SimArgs;-><init>(Lcom/android/internal/telephony/IccCardConstants$State;)V
+
+    invoke-direct {p0, v0}, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->handleSimStateChange(Lcom/android/internal/policy/impl/KeyguardUpdateMonitor$SimArgs;)V
+
+    return-void
+.end method
+
+.method public setFailedAttempts(I)V
+    .locals 0
+    .parameter "failedAttempts"
+
+    .prologue
+    iput p1, p0, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->mFailedAttempts:I
+
+    return-void
+.end method
+
+.method public setSkipSimStateChange(Z)V
+    .locals 0
+    .parameter "skip"
+
+    .prologue
+    iput-boolean p1, p0, Lcom/android/internal/policy/impl/KeyguardUpdateMonitor;->mSkipSimStateChange:Z
+
     return-void
 .end method
