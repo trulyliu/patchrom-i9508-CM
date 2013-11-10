@@ -1375,6 +1375,17 @@
     return-void
 .end method
 
+.method public getBgDrawable()Landroid/graphics/drawable/Drawable;
+    .locals 1
+
+    .prologue
+    invoke-virtual {p0}, Landroid/widget/ProgressBar;->getCurrentDrawable()Landroid/graphics/drawable/Drawable;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
 .method getCurrentDrawable()Landroid/graphics/drawable/Drawable;
     .locals 1
 
@@ -3208,6 +3219,18 @@
 
     .line 925
     return-void
+.end method
+
+.method public tileifyIndeterminateMiui(Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
+    .locals 1
+    .parameter "drawable"
+
+    .prologue
+    invoke-direct {p0, p1}, Landroid/widget/ProgressBar;->tileifyIndeterminate(Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v0
+
+    return-object v0
 .end method
 
 .method protected verifyDrawable(Landroid/graphics/drawable/Drawable;)Z

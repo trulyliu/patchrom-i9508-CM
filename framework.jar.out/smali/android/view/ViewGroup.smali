@@ -16,7 +16,9 @@
         Landroid/view/ViewGroup$TouchTarget;,
         Landroid/view/ViewGroup$MarginLayoutParams;,
         Landroid/view/ViewGroup$LayoutParams;,
-        Landroid/view/ViewGroup$OnHierarchyChangeListener;
+        Landroid/view/ViewGroup$OnHierarchyChangeListener;,
+        Landroid/view/ViewGroup$Injector;,
+        Landroid/view/ViewGroup$ChildSequenceStateTaggingListener;
     }
 .end annotation
 
@@ -115,6 +117,8 @@
         category = "layout"
     .end annotation
 .end field
+
+.field mChildSequenceStateTaggingListener:Landroid/view/ViewGroup$ChildSequenceStateTaggingListener;
 
 .field final mChildTransformation:Landroid/view/animation/Transformation;
 
@@ -219,6 +223,8 @@
 .field protected mOnHierarchyChangeListener:Landroid/view/ViewGroup$OnHierarchyChangeListener;
 
 .field protected mPersistentDrawingCache:I
+
+.field mTagChildrenSequenceState:Z
 
 .field private mTransition:Landroid/animation/LayoutTransition;
 
@@ -599,31 +605,27 @@
 
     aput-object p1, v0, v3
 
-    .line 3428
     :cond_1
     :goto_0
+    invoke-static {p0}, Landroid/view/ViewGroup$Injector;->tagChildSequenceState(Landroid/view/ViewGroup;)V
+
     return-void
 
-    .line 3411
     :cond_2
     if-ge p2, v1, :cond_4
 
-    .line 3412
     if-ne v2, v1, :cond_3
 
-    .line 3413
     add-int/lit8 v3, v2, 0xc
 
     new-array v3, v3, [Landroid/view/View;
 
     iput-object v3, p0, Landroid/view/ViewGroup;->mChildren:[Landroid/view/View;
 
-    .line 3414
     iget-object v3, p0, Landroid/view/ViewGroup;->mChildren:[Landroid/view/View;
 
     invoke-static {v0, v4, v3, v4, p2}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
 
-    .line 3415
     iget-object v3, p0, Landroid/view/ViewGroup;->mChildren:[Landroid/view/View;
 
     add-int/lit8 v4, p2, 0x1
@@ -2316,16 +2318,19 @@
 
     goto :goto_1
 
-    .line 510
     .end local v2           #animateLayoutChanges:Z
     .end local v3           #attr:I
     :cond_1
+    invoke-static {p1, p2}, Landroid/view/ViewGroup$Injector;->initTagChildSequenceState(Landroid/content/Context;Landroid/util/AttributeSet;)Z
+
+    move-result v6
+
+    iput-boolean v6, p0, Landroid/view/ViewGroup;->mTagChildrenSequenceState:Z
+
     invoke-virtual {v1}, Landroid/content/res/TypedArray;->recycle()V
 
-    .line 511
     return-void
 
-    .line 470
     :pswitch_data_0
     .packed-switch 0x0
         :pswitch_0
@@ -2696,34 +2701,30 @@
 
     aput-object v4, v0, v2
 
-    .line 3445
     :goto_0
     iget v2, p0, Landroid/view/ViewGroup;->mLastTouchDownIndex:I
 
     if-ne v2, p1, :cond_5
 
-    .line 3446
     const-wide/16 v2, 0x0
 
     iput-wide v2, p0, Landroid/view/ViewGroup;->mLastTouchDownTime:J
 
-    .line 3447
     const/4 v2, -0x1
 
     iput v2, p0, Landroid/view/ViewGroup;->mLastTouchDownIndex:I
 
-    .line 3451
     :cond_2
     :goto_1
+    invoke-static {p0}, Landroid/view/ViewGroup$Injector;->tagChildSequenceState(Landroid/view/ViewGroup;)V
+
     return-void
 
-    .line 3439
     :cond_3
     if-ltz p1, :cond_4
 
     if-ge p1, v1, :cond_4
 
-    .line 3440
     add-int/lit8 v2, p1, 0x1
 
     sub-int v3, v1, p1
@@ -2879,6 +2880,8 @@
     sub-int/2addr v4, v5
 
     iput v4, p0, Landroid/view/ViewGroup;->mChildrenCount:I
+
+    invoke-static {p0}, Landroid/view/ViewGroup$Injector;->tagChildSequenceState(Landroid/view/ViewGroup;)V
 
     goto :goto_0
 .end method
@@ -4476,57 +4479,57 @@
     .prologue
     const/4 v4, 0x0
 
-    .line 3974
     iget v1, p0, Landroid/view/ViewGroup;->mChildrenCount:I
 
-    .line 3975
     .local v1, count:I
     if-gtz v1, :cond_1
 
-    .line 3986
     :cond_0
     return-void
 
-    .line 3979
     :cond_1
     iget-object v0, p0, Landroid/view/ViewGroup;->mChildren:[Landroid/view/View;
 
-    .line 3980
     .local v0, children:[Landroid/view/View;
     const/4 v3, 0x0
 
     iput v3, p0, Landroid/view/ViewGroup;->mChildrenCount:I
 
-    .line 3982
     add-int/lit8 v2, v1, -0x1
 
     .local v2, i:I
     :goto_0
-    if-ltz v2, :cond_0
+    if-ltz v2, :cond_miui_0
 
-    .line 3983
     aget-object v3, v0, v2
 
     iput-object v4, v3, Landroid/view/View;->mParent:Landroid/view/ViewParent;
 
-    .line 3984
     aput-object v4, v0, v2
 
-    .line 3982
     add-int/lit8 v2, v2, -0x1
 
     goto :goto_0
+    
+    :cond_miui_0
+    iget-object v3, p0, Landroid/view/ViewGroup;->mFocused:Landroid/view/View;
+
+    invoke-static {p0, v3}, Landroid/view/ViewGroup$Injector;->clearChildFocus(Landroid/view/ViewGroup;Landroid/view/View;)V
+    
+    return-void
 .end method
 
 .method protected detachViewFromParent(I)V
-    .locals 0
+    .locals 1
     .parameter "index"
 
     .prologue
-    .line 3933
     invoke-direct {p0, p1}, Landroid/view/ViewGroup;->removeFromArray(I)V
 
-    .line 3934
+    iget-object v0, p0, Landroid/view/ViewGroup;->mFocused:Landroid/view/View;
+
+    invoke-static {p0, v0}, Landroid/view/ViewGroup$Injector;->clearChildFocus(Landroid/view/ViewGroup;Landroid/view/View;)V
+
     return-void
 .end method
 
@@ -4535,27 +4538,31 @@
     .parameter "child"
 
     .prologue
-    .line 3912
     invoke-virtual {p0, p1}, Landroid/view/ViewGroup;->indexOfChild(Landroid/view/View;)I
 
     move-result v0
 
     invoke-direct {p0, v0}, Landroid/view/ViewGroup;->removeFromArray(I)V
 
-    .line 3913
+    iget-object v0, p0, Landroid/view/ViewGroup;->mFocused:Landroid/view/View;
+
+    invoke-static {p0, v0}, Landroid/view/ViewGroup$Injector;->clearChildFocus(Landroid/view/ViewGroup;Landroid/view/View;)V
+
     return-void
 .end method
 
 .method protected detachViewsFromParent(II)V
-    .locals 0
+    .locals 1
     .parameter "start"
     .parameter "count"
 
     .prologue
-    .line 3955
     invoke-direct {p0, p1, p2}, Landroid/view/ViewGroup;->removeFromArray(II)V
 
-    .line 3956
+    iget-object v0, p0, Landroid/view/ViewGroup;->mFocused:Landroid/view/View;
+
+    invoke-static {p0, v0}, Landroid/view/ViewGroup$Injector;->clearChildFocus(Landroid/view/ViewGroup;Landroid/view/View;)V
+
     return-void
 .end method
 
@@ -12700,43 +12707,36 @@
     .parameter "newVisibility"
 
     .prologue
-    .line 992
     iget-object v0, p0, Landroid/view/ViewGroup;->mTransition:Landroid/animation/LayoutTransition;
 
     if-eqz v0, :cond_0
 
-    .line 993
     if-nez p3, :cond_2
 
-    .line 994
     iget-object v0, p0, Landroid/view/ViewGroup;->mTransition:Landroid/animation/LayoutTransition;
 
     invoke-virtual {v0, p0, p1, p2}, Landroid/animation/LayoutTransition;->showChild(Landroid/view/ViewGroup;Landroid/view/View;I)V
 
-    .line 1010
     :cond_0
     :goto_0
     iget-object v0, p0, Landroid/view/ViewGroup;->mCurrentDrag:Landroid/view/DragEvent;
 
     if-eqz v0, :cond_1
 
-    .line 1011
     if-nez p3, :cond_1
 
-    .line 1012
     invoke-virtual {p0, p1}, Landroid/view/ViewGroup;->notifyChildOfDrag(Landroid/view/View;)Z
 
-    .line 1015
     :cond_1
+    invoke-static {p0}, Landroid/view/ViewGroup$Injector;->tagChildSequenceState(Landroid/view/ViewGroup;)V
+
     return-void
 
-    .line 996
     :cond_2
     iget-object v0, p0, Landroid/view/ViewGroup;->mTransition:Landroid/animation/LayoutTransition;
 
     invoke-virtual {v0, p0, p1, p3}, Landroid/animation/LayoutTransition;->hideChild(Landroid/view/ViewGroup;Landroid/view/View;I)V
 
-    .line 997
     iget-object v0, p0, Landroid/view/ViewGroup;->mTransitioningViews:Ljava/util/ArrayList;
 
     if-eqz v0, :cond_0
@@ -14800,6 +14800,16 @@
     invoke-direct {p0, v0, p1}, Landroid/view/ViewGroup;->setBooleanFlag(IZ)V
 
     .line 4470
+    return-void
+.end method
+
+.method public setChildSequenceStateTaggingListener(Landroid/view/ViewGroup$ChildSequenceStateTaggingListener;)V
+    .locals 0
+    .parameter "listener"
+
+    .prologue
+    iput-object p1, p0, Landroid/view/ViewGroup;->mChildSequenceStateTaggingListener:Landroid/view/ViewGroup$ChildSequenceStateTaggingListener;
+
     return-void
 .end method
 

@@ -2522,6 +2522,16 @@
 
 
 # virtual methods
+.method public calibrateSensor(Landroid/hardware/Sensor;)Z
+    .locals 1
+    .parameter "sensor"
+
+    .prologue
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
 .method public getDefaultSensor(I)Landroid/hardware/Sensor;
     .locals 2
     .parameter "type"

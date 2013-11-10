@@ -371,28 +371,25 @@
     :cond_3
     new-array v6, v13, [Lcom/android/internal/app/LocalePicker$LocaleInfo;
 
-    .line 156
     .local v6, localeInfos:[Lcom/android/internal/app/LocalePicker$LocaleInfo;
     const/4 v14, 0x0
 
     :goto_3
     if-ge v14, v13, :cond_4
 
-    .line 157
     aget-object v2, v20, v14
 
     aput-object v2, v6, v14
 
-    .line 156
     add-int/lit8 v14, v14, 0x1
 
     goto :goto_3
 
-    .line 159
     :cond_4
     invoke-static {v6}, Ljava/util/Arrays;->sort([Ljava/lang/Object;)V
 
-    .line 161
+    invoke-static {v6}, Lmiui/util/ExtraLocalePicker;->adjustLocaleOrder([Lcom/android/internal/app/LocalePicker$LocaleInfo;)V
+
     const-string v2, "layout_inflater"
 
     move-object/from16 v0, p0

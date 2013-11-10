@@ -3,6 +3,14 @@
 .source "DateFormat.java"
 
 
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Landroid/text/format/DateFormat$Injector;
+    }
+.end annotation
+
+
 # static fields
 .field public static final AM_PM:C = 'a'
 
@@ -1426,22 +1434,23 @@
     .parameter "context"
 
     .prologue
-    .line 221
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v5
 
-    const-string/jumbo v6, "time_12_24"
+    const-string v6, "time_12_24"
 
     invoke-static {v5, v6}, Landroid/provider/Settings$System;->getString(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v4
 
-    .line 224
     .local v4, value:Ljava/lang/String;
+    invoke-static {p0, v4}, Landroid/text/format/DateFormat$Injector;->check24HourFormatForChina(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v4
+
     if-nez v4, :cond_3
 
-    .line 225
     invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v5
