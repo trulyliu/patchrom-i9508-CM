@@ -6,8 +6,10 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
+        Lcom/android/server/am/ActivityStack$CpuBooster;,
         Lcom/android/server/am/ActivityStack$ScheduleDestroyArgs;,
-        Lcom/android/server/am/ActivityStack$ActivityState;
+        Lcom/android/server/am/ActivityStack$ActivityState;,
+        Lcom/android/server/am/ActivityStack$Injector;
     }
 .end annotation
 
@@ -96,6 +98,8 @@
 .field mConfigWillChange:Z
 
 .field final mContext:Landroid/content/Context;
+
+.field private mCpuBooster:Lcom/android/server/am/ActivityStack$CpuBooster;
 
 .field private mCurrentUser:I
 
@@ -300,138 +304,112 @@
 
     const/4 v3, 0x0
 
-    .line 434
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 156
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v1, p0, Lcom/android/server/am/ActivityStack;->mHistory:Ljava/util/ArrayList;
 
-    .line 161
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v1, p0, Lcom/android/server/am/ActivityStack;->mValidateAppTokens:Ljava/util/ArrayList;
 
-    .line 168
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v1, p0, Lcom/android/server/am/ActivityStack;->mLRUActivities:Ljava/util/ArrayList;
 
-    .line 175
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v1, p0, Lcom/android/server/am/ActivityStack;->mWaitingVisibleActivities:Ljava/util/ArrayList;
 
-    .line 183
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v1, p0, Lcom/android/server/am/ActivityStack;->mStoppingActivities:Ljava/util/ArrayList;
 
-    .line 189
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v1, p0, Lcom/android/server/am/ActivityStack;->mGoingToSleepActivities:Ljava/util/ArrayList;
 
-    .line 196
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v1, p0, Lcom/android/server/am/ActivityStack;->mNoAnimActivities:Ljava/util/ArrayList;
 
-    .line 204
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v1, p0, Lcom/android/server/am/ActivityStack;->mFinishingActivities:Ljava/util/ArrayList;
 
-    .line 210
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v1, p0, Lcom/android/server/am/ActivityStack;->mWaitingActivityLaunched:Ljava/util/ArrayList;
 
-    .line 216
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v1, p0, Lcom/android/server/am/ActivityStack;->mWaitingActivityVisible:Ljava/util/ArrayList;
 
-    .line 219
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v1, p0, Lcom/android/server/am/ActivityStack;->mStartingUsers:Ljava/util/ArrayList;
 
-    .line 241
     iput-object v3, p0, Lcom/android/server/am/ActivityStack;->mPausingActivity:Lcom/android/server/am/ActivityRecord;
 
-    .line 248
     iput-object v3, p0, Lcom/android/server/am/ActivityStack;->mLastPausedActivity:Lcom/android/server/am/ActivityRecord;
 
-    .line 253
     iput-object v3, p0, Lcom/android/server/am/ActivityStack;->mResumedActivity:Lcom/android/server/am/ActivityRecord;
 
-    .line 260
     iput-object v3, p0, Lcom/android/server/am/ActivityStack;->mLastStartedActivity:Lcom/android/server/am/ActivityRecord;
 
-    .line 272
     iput-boolean v4, p0, Lcom/android/server/am/ActivityStack;->mUserLeaving:Z
 
-    .line 274
     const-wide/16 v1, 0x0
 
     iput-wide v1, p0, Lcom/android/server/am/ActivityStack;->mInitialStartTime:J
 
-    .line 279
     iput-boolean v4, p0, Lcom/android/server/am/ActivityStack;->mSleepTimeout:Z
 
-    .line 284
     iput-boolean v4, p0, Lcom/android/server/am/ActivityStack;->mDismissKeyguardOnNextActivity:Z
 
-    .line 289
     iput-object v3, p0, Lcom/android/server/am/ActivityStack;->mPrivacyGuardPackageName:Ljava/lang/String;
 
-    .line 291
     iput v5, p0, Lcom/android/server/am/ActivityStack;->mThumbnailWidth:I
 
-    .line 292
     iput v5, p0, Lcom/android/server/am/ActivityStack;->mThumbnailHeight:I
 
-    .line 330
     new-instance v1, Lcom/android/server/am/ActivityStack$1;
 
     invoke-direct {v1, p0}, Lcom/android/server/am/ActivityStack$1;-><init>(Lcom/android/server/am/ActivityStack;)V
 
     iput-object v1, p0, Lcom/android/server/am/ActivityStack;->mHandler:Landroid/os/Handler;
 
-    .line 435
+    iput-object v3, p0, Lcom/android/server/am/ActivityStack;->mCpuBooster:Lcom/android/server/am/ActivityStack$CpuBooster;
+
     iput-object p1, p0, Lcom/android/server/am/ActivityStack;->mService:Lcom/android/server/am/ActivityManagerService;
 
-    .line 436
     iput-object p2, p0, Lcom/android/server/am/ActivityStack;->mContext:Landroid/content/Context;
 
-    .line 437
     iput-boolean p3, p0, Lcom/android/server/am/ActivityStack;->mMainStack:Z
 
-    .line 438
     const-string v1, "power"
 
     invoke-virtual {p2, v1}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
@@ -7856,6 +7834,16 @@
 
     .line 4692
     :cond_7
+    iget-object v5, p1, Lcom/android/server/am/ActivityRecord;->info:Landroid/content/pm/ActivityInfo;
+
+    iget-object v5, v5, Landroid/content/pm/ActivityInfo;->packageName:Ljava/lang/String;
+
+    invoke-static {v5, v0, v1}, Landroid/app/MiuiThemeHelper;->needRestartActivity(Ljava/lang/String;ILandroid/content/res/Configuration;)Z
+
+    move-result v5
+
+    if-nez v5, :cond_0
+
     iget v5, p1, Lcom/android/server/am/ActivityRecord;->configChangeFlags:I
 
     or-int/2addr v5, v0
@@ -11471,6 +11459,10 @@
 
     move-result v0
 
+    invoke-virtual {p0, v0}, Lcom/android/server/am/ActivityStack;->setForegroundProcess(Z)Z
+
+    move-result v0
+
     return v0
 .end method
 
@@ -13366,6 +13358,32 @@
     goto :goto_0
 .end method
 
+.method setForegroundProcess(Z)Z
+    .locals 3
+    .parameter "resumed"
+
+    .prologue
+    const/4 v1, 0x0
+
+    invoke-virtual {p0, v1}, Lcom/android/server/am/ActivityStack;->topRunningActivityLocked(Lcom/android/server/am/ActivityRecord;)Lcom/android/server/am/ActivityRecord;
+
+    move-result-object v0
+
+    .local v0, next:Lcom/android/server/am/ActivityRecord;
+    if-eqz v0, :cond_0
+
+    if-eqz p1, :cond_0
+
+    const-string v1, "sys.foreground_process"
+
+    iget-object v2, v0, Lcom/android/server/am/ActivityRecord;->processName:Ljava/lang/String;
+
+    invoke-static {v1, v2}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
+
+    :cond_0
+    return p1
+.end method
+
 .method final showAskCompatModeDialogLocked(Lcom/android/server/am/ActivityRecord;)V
     .locals 2
     .parameter "r"
@@ -13839,10 +13857,14 @@
     .parameter "outActivity"
 
     .prologue
-    .line 2519
+    move-object/from16 v0, p0
+
+    iget-object v3, v0, Lcom/android/server/am/ActivityStack;->mCpuBooster:Lcom/android/server/am/ActivityStack$CpuBooster;
+
+    invoke-virtual {v3}, Lcom/android/server/am/ActivityStack$CpuBooster;->start()V
+
     const/16 v23, 0x0
 
-    .line 2521
     .local v23, err:I
     move-object/from16 v0, p0
 
@@ -14946,6 +14968,51 @@
 
     .line 3150
     .local v22, aInfo:Landroid/content/pm/ActivityInfo;
+    move-object/from16 v0, p0
+
+    iget-object v2, v0, Lcom/android/server/am/ActivityStack;->mContext:Landroid/content/Context;
+
+    move-object/from16 v4, v22
+
+    move/from16 v1, p7
+
+    move-object/from16 v0, p5
+
+    invoke-static {v2, v4, v3, v0, v1}, Lcom/android/server/am/ActivityStack$Injector;->checkAccessControl(Landroid/content/Context;Landroid/content/pm/ActivityInfo;Landroid/content/Intent;Landroid/os/IBinder;I)Landroid/content/Intent;
+
+    move-result-object p3
+
+    .end local v3           #intent:Landroid/content/Intent;
+    .restart local p3
+    move-object/from16 v5, p3
+
+    move-object/from16 v6, p0
+
+    move-object/from16 v7, p9
+
+    move-object/from16 v8, p10
+
+    move/from16 v9, p14
+
+    invoke-static/range {v4 .. v9}, Lcom/android/server/am/ActivityStack$Injector;->resolveCheckIntent(Landroid/content/pm/ActivityInfo;Landroid/content/Intent;Lcom/android/server/am/ActivityStack;Ljava/lang/String;Landroid/os/ParcelFileDescriptor;I)Landroid/content/pm/ActivityInfo;
+
+    move-result-object v4
+
+    move-object/from16 v0, p0
+
+    move-object/from16 v2, v22
+
+    invoke-direct {v0, v2}, Lcom/android/server/am/ActivityStack;->checkRunningCompatibility(Landroid/content/pm/ActivityInfo;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_miui_0
+
+    const/4 v2, 0x5
+
+    return v2
+
+    :cond_miui_0
     move-object/from16 v0, p0
 
     iget-object v0, v0, Lcom/android/server/am/ActivityStack;->mService:Lcom/android/server/am/ActivityManagerService;
@@ -17927,4 +17994,44 @@
 
     .line 1996
     return-void
+.end method
+
+.method private checkRunningCompatibility(Landroid/content/pm/ActivityInfo;)Z
+    .locals 2
+    .parameter "aInfo"
+
+    .prologue
+    iget-object v0, p0, Lcom/android/server/am/ActivityStack;->mService:Lcom/android/server/am/ActivityManagerService;
+
+    iget-boolean v0, v0, Lcom/android/server/am/ActivityManagerService;->mSystemReady:Z
+
+    if-eqz v0, :cond_1
+
+    iget-object v1, p0, Lcom/android/server/am/ActivityStack;->mContext:Landroid/content/Context;
+
+    if-eqz p1, :cond_0
+
+    iget-object v0, p1, Landroid/content/pm/ActivityInfo;->applicationInfo:Landroid/content/pm/ApplicationInfo;
+
+    :goto_0
+    invoke-static {v1, v0}, Lcom/android/server/am/ExtraActivityManagerService;->checkRunningCompatibility(Landroid/content/Context;Landroid/content/pm/ApplicationInfo;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    const/4 v0, 0x0
+
+    :goto_1
+    return v0
+
+    :cond_0
+    const/4 v0, 0x0
+
+    goto :goto_0
+
+    :cond_1
+    const/4 v0, 0x1
+
+    goto :goto_1
 .end method
