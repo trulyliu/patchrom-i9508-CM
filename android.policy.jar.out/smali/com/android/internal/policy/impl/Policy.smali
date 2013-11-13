@@ -186,10 +186,6 @@
 
     .prologue
     .line 72
-#    new-instance v0, Lcom/android/internal/policy/impl/PhoneWindowManager;
-
-#    invoke-direct {v0, p1}, Lcom/android/internal/policy/impl/PhoneWindowManager;-><init>(Lcom/android/internal/os/IDeviceHandler;)V
-
     new-instance v0, Lcom/android/internal/policy/impl/MiuiPhoneWindowManager;
 
     invoke-direct {v0}, Lcom/android/internal/policy/impl/MiuiPhoneWindowManager;-><init>()V

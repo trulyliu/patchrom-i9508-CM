@@ -24,7 +24,7 @@
 
 .field private static final PRELOAD_GC_THRESHOLD:I = 0xc350
 
-.field private static final PRELOAD_RESOURCES:Z = true
+.field private static final PRELOAD_RESOURCES:Z = false
 
 .field private static final ROOT_GID:I = 0x0
 
