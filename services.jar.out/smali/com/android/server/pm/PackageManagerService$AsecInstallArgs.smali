@@ -453,10 +453,8 @@
 
     invoke-virtual {v1, v2, v4}, Landroid/content/Context;->revokeUriPermission(Landroid/net/Uri;I)V
 
-    .line 7304
     return v0
 
-    .line 7306
     :catchall_0
     move-exception v0
 

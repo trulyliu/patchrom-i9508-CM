@@ -816,15 +816,13 @@
 
     invoke-static {v7, v9}, Landroid/util/Slog;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 312
     new-instance v6, Lcom/android/server/MiuiLightsService;
 
     invoke-direct {v6, v5}, Lcom/android/server/MiuiLightsService;-><init>(Landroid/content/Context;)V
     :try_end_a
     .catch Ljava/lang/RuntimeException; {:try_start_a .. :try_end_a} :catch_5c
 
-    .line 314
-    .end local v98           #lights:Lcom/android/server/MiuiLightsService;
+    .end local v98           #lights:Lcom/android/server/LightsService;
     .local v6, lights:Lcom/android/server/MiuiLightsService;
     :try_start_b
     const-string v7, "SystemServer"
@@ -2226,6 +2224,14 @@
     move-object/from16 v0, v142
 
     invoke-static {v7, v0}, Landroid/os/ServiceManager;->addService(Ljava/lang/String;Landroid/os/IBinder;)V
+
+#    const-string v7, "miui.usb.service"
+
+#    new-instance v9, Lcom/miui/server/MiuiUsbService;
+
+#    invoke-direct {v9, v5}, Lcom/miui/server/MiuiUsbService;-><init>(Landroid/content/Context;)V
+
+#    invoke-static {v7, v9}, Landroid/os/ServiceManager;->addService(Ljava/lang/String;Landroid/os/IBinder;)V
     :try_end_46
     .catch Ljava/lang/Throwable; {:try_start_46 .. :try_end_46} :catch_44
 
@@ -3046,7 +3052,7 @@
     .line 126
     .end local v4           #power:Lcom/android/server/power/PowerManagerService;
     .end local v5           #context:Landroid/content/Context;
-    .end local v6           #lights:Lcom/android/server/LightsService;
+    .end local v6           #lights:Lcom/android/server/MiuiLightsService;
     .end local v8           #battery:Lcom/android/server/BatteryService;
     .end local v10           #display:Lcom/android/server/display/DisplayManagerService;
     .end local v15           #alarm:Lcom/android/server/AlarmManagerService;
@@ -3278,7 +3284,7 @@
     move-object/from16 v6, v98
 
     .end local v98           #lights:Lcom/android/server/LightsService;
-    .restart local v6       #lights:Lcom/android/server/LightsService;
+    .restart local v6       #lights:Lcom/android/server/MiuiLightsService;
     move-object/from16 v96, v97
 
     .line 368
@@ -3304,7 +3310,7 @@
     goto/16 :goto_b
 
     .line 301
-    .end local v6           #lights:Lcom/android/server/LightsService;
+    .end local v6           #lights:Lcom/android/server/MiuiLightsService;
     .end local v8           #battery:Lcom/android/server/BatteryService;
     .end local v15           #alarm:Lcom/android/server/AlarmManagerService;
     .end local v19           #inputManager:Lcom/android/server/input/InputManagerService;
@@ -3333,7 +3339,7 @@
     .end local v95           #inputManager:Lcom/android/server/input/InputManagerService;
     .end local v98           #lights:Lcom/android/server/LightsService;
     .end local v143           #vibrator:Lcom/android/server/VibratorService;
-    .restart local v6       #lights:Lcom/android/server/LightsService;
+    .restart local v6       #lights:Lcom/android/server/MiuiLightsService;
     .restart local v8       #battery:Lcom/android/server/BatteryService;
     .restart local v15       #alarm:Lcom/android/server/AlarmManagerService;
     .restart local v19       #inputManager:Lcom/android/server/input/InputManagerService;
@@ -4492,7 +4498,7 @@
     goto/16 :goto_48
 
     .line 279
-    .end local v6           #lights:Lcom/android/server/LightsService;
+    .end local v6           #lights:Lcom/android/server/MiuiLightsService;
     .end local v8           #battery:Lcom/android/server/BatteryService;
     .end local v15           #alarm:Lcom/android/server/AlarmManagerService;
     .end local v19           #inputManager:Lcom/android/server/input/InputManagerService;
@@ -4545,7 +4551,7 @@
     .end local v98           #lights:Lcom/android/server/LightsService;
     .end local v106           #networkPolicy:Lcom/android/server/net/NetworkPolicyManagerService;
     .end local v131           #telephonyRegistry:Lcom/android/server/TelephonyRegistry;
-    .restart local v6       #lights:Lcom/android/server/LightsService;
+    .restart local v6       #lights:Lcom/android/server/MiuiLightsService;
     .restart local v8       #battery:Lcom/android/server/BatteryService;
     .restart local v15       #alarm:Lcom/android/server/AlarmManagerService;
     .restart local v19       #inputManager:Lcom/android/server/input/InputManagerService;
@@ -4844,7 +4850,7 @@
 
     .line 367
     .end local v4           #power:Lcom/android/server/power/PowerManagerService;
-    .end local v6           #lights:Lcom/android/server/LightsService;
+    .end local v6           #lights:Lcom/android/server/MiuiLightsService;
     .end local v8           #battery:Lcom/android/server/BatteryService;
     .end local v10           #display:Lcom/android/server/display/DisplayManagerService;
     .end local v15           #alarm:Lcom/android/server/AlarmManagerService;
@@ -4901,11 +4907,11 @@
     move-object/from16 v6, v98
 
     .end local v98           #lights:Lcom/android/server/LightsService;
-    .restart local v6       #lights:Lcom/android/server/LightsService;
+    .restart local v6       #lights:Lcom/android/server/MiuiLightsService;
     goto/16 :goto_4a
 
     .end local v4           #power:Lcom/android/server/power/PowerManagerService;
-    .end local v6           #lights:Lcom/android/server/LightsService;
+    .end local v6           #lights:Lcom/android/server/MiuiLightsService;
     .end local v8           #battery:Lcom/android/server/BatteryService;
     .end local v10           #display:Lcom/android/server/display/DisplayManagerService;
     .end local v15           #alarm:Lcom/android/server/AlarmManagerService;
@@ -4950,14 +4956,14 @@
     move-object/from16 v6, v98
 
     .end local v98           #lights:Lcom/android/server/LightsService;
-    .restart local v6       #lights:Lcom/android/server/LightsService;
+    .restart local v6       #lights:Lcom/android/server/MiuiLightsService;
     move-object/from16 v96, v97
 
     .end local v97           #installer:Lcom/android/server/pm/Installer;
     .restart local v96       #installer:Lcom/android/server/pm/Installer;
     goto/16 :goto_4a
 
-    .end local v6           #lights:Lcom/android/server/LightsService;
+    .end local v6           #lights:Lcom/android/server/MiuiLightsService;
     .end local v8           #battery:Lcom/android/server/BatteryService;
     .end local v10           #display:Lcom/android/server/display/DisplayManagerService;
     .end local v15           #alarm:Lcom/android/server/AlarmManagerService;
@@ -4997,14 +5003,14 @@
     move-object/from16 v6, v98
 
     .end local v98           #lights:Lcom/android/server/LightsService;
-    .restart local v6       #lights:Lcom/android/server/LightsService;
+    .restart local v6       #lights:Lcom/android/server/MiuiLightsService;
     move-object/from16 v96, v97
 
     .end local v97           #installer:Lcom/android/server/pm/Installer;
     .restart local v96       #installer:Lcom/android/server/pm/Installer;
     goto/16 :goto_4a
 
-    .end local v6           #lights:Lcom/android/server/LightsService;
+    .end local v6           #lights:Lcom/android/server/MiuiLightsService;
     .end local v8           #battery:Lcom/android/server/BatteryService;
     .end local v15           #alarm:Lcom/android/server/AlarmManagerService;
     .end local v19           #inputManager:Lcom/android/server/input/InputManagerService;
@@ -5038,14 +5044,14 @@
     move-object/from16 v6, v98
 
     .end local v98           #lights:Lcom/android/server/LightsService;
-    .restart local v6       #lights:Lcom/android/server/LightsService;
+    .restart local v6       #lights:Lcom/android/server/MiuiLightsService;
     move-object/from16 v96, v97
 
     .end local v97           #installer:Lcom/android/server/pm/Installer;
     .restart local v96       #installer:Lcom/android/server/pm/Installer;
     goto/16 :goto_4a
 
-    .end local v6           #lights:Lcom/android/server/LightsService;
+    .end local v6           #lights:Lcom/android/server/MiuiLightsService;
     .end local v8           #battery:Lcom/android/server/BatteryService;
     .end local v15           #alarm:Lcom/android/server/AlarmManagerService;
     .end local v19           #inputManager:Lcom/android/server/input/InputManagerService;
@@ -5089,7 +5095,7 @@
     move-object/from16 v6, v98
 
     .end local v98           #lights:Lcom/android/server/LightsService;
-    .restart local v6       #lights:Lcom/android/server/LightsService;
+    .restart local v6       #lights:Lcom/android/server/MiuiLightsService;
     move-object/from16 v62, v63
 
     .end local v63           #accountManager:Landroid/accounts/AccountManagerService;
@@ -5100,7 +5106,7 @@
     .restart local v96       #installer:Lcom/android/server/pm/Installer;
     goto/16 :goto_4a
 
-    .end local v6           #lights:Lcom/android/server/LightsService;
+    .end local v6           #lights:Lcom/android/server/MiuiLightsService;
     .end local v8           #battery:Lcom/android/server/BatteryService;
     .end local v15           #alarm:Lcom/android/server/AlarmManagerService;
     .end local v19           #inputManager:Lcom/android/server/input/InputManagerService;
@@ -5134,7 +5140,7 @@
     move-object/from16 v6, v98
 
     .end local v98           #lights:Lcom/android/server/LightsService;
-    .restart local v6       #lights:Lcom/android/server/LightsService;
+    .restart local v6       #lights:Lcom/android/server/MiuiLightsService;
     move-object/from16 v96, v97
 
     .end local v97           #installer:Lcom/android/server/pm/Installer;
@@ -5299,7 +5305,7 @@
     goto/16 :goto_4a
 
     .line 296
-    .end local v6           #lights:Lcom/android/server/LightsService;
+    .end local v6           #lights:Lcom/android/server/MiuiLightsService;
     .end local v8           #battery:Lcom/android/server/BatteryService;
     .end local v15           #alarm:Lcom/android/server/AlarmManagerService;
     .end local v19           #inputManager:Lcom/android/server/input/InputManagerService;
@@ -5333,7 +5339,7 @@
     .end local v97           #installer:Lcom/android/server/pm/Installer;
     .end local v98           #lights:Lcom/android/server/LightsService;
     .end local v131           #telephonyRegistry:Lcom/android/server/TelephonyRegistry;
-    .restart local v6       #lights:Lcom/android/server/LightsService;
+    .restart local v6       #lights:Lcom/android/server/MiuiLightsService;
     .restart local v8       #battery:Lcom/android/server/BatteryService;
     .restart local v15       #alarm:Lcom/android/server/AlarmManagerService;
     .restart local v19       #inputManager:Lcom/android/server/input/InputManagerService;

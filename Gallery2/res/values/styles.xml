@@ -145,6 +145,8 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">2.0dip</item>
     </style>
+    <style name="TextAppearance">
+    </style>
     <style name="TextAppearance.DialogWindowTitle">
         <item name="android:textSize">22.0sp</item>
         <item name="android:textColor">@color/holo_blue_light</item>

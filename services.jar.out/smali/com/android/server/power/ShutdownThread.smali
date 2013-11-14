@@ -170,10 +170,12 @@
 .end method
 
 .method private static beginShutdownSequence(Landroid/content/Context;)V
-    .locals 7
+    .locals 8
     .parameter "context"
 
     .prologue
+    const v7, 0x60d003e
+
     const/4 v5, 0x1
 
     const/4 v4, 0x0
@@ -219,7 +221,7 @@
     .line 290
     new-instance v1, Landroid/app/ProgressDialog;
 
-    invoke-direct {v1, p0}, Landroid/app/ProgressDialog;-><init>(Landroid/content/Context;)V
+    invoke-direct {v1, p0, v7}, Landroid/app/ProgressDialog;-><init>(Landroid/content/Context;I)V
 
     .line 291
     .local v1, pd:Landroid/app/ProgressDialog;
@@ -736,11 +738,13 @@
 .end method
 
 .method static shutdownInner(Landroid/content/Context;Z)V
-    .locals 12
+    .locals 13
     .parameter "context"
     .parameter "confirm"
 
     .prologue
+    const v12, 0x60d003e
+
     .line 113
     sget-object v9, Lcom/android/server/power/ShutdownThread;->sIsStartedGuard:Ljava/lang/Object;
 
@@ -794,6 +798,10 @@
     .line 146
     .local v6, resourceId:I
     :goto_1
+    invoke-static {v6}, Lcom/android/server/power/ShutdownThread$Injector;->getResourceId(I)I
+
+    move-result v6
+
     if-eqz p1, :cond_a
 
     .line 147
@@ -882,7 +890,7 @@
     .line 163
     new-instance v8, Landroid/app/AlertDialog$Builder;
 
-    invoke-direct {v8, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+    invoke-direct {v8, p0, v12}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;I)V
 
     invoke-virtual {v8, v7}, Landroid/app/AlertDialog$Builder;->setTitle(I)Landroid/app/AlertDialog$Builder;
 
@@ -948,7 +956,7 @@
     .line 202
     new-instance v8, Landroid/app/AlertDialog$Builder;
 
-    invoke-direct {v8, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+    invoke-direct {v8, p0, v12}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;I)V
 
     invoke-virtual {v8, v7}, Landroid/app/AlertDialog$Builder;->setTitle(I)Landroid/app/AlertDialog$Builder;
 

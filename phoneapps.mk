@@ -1,4 +1,7 @@
 local-phone-apps = ApplicationsProvider \
+                   NfcNci \
+                   Torch \
+                   GalaxyS3Settings \
                    BackupRestoreConfirmation \
                    BasicDreams \
                    Bluetooth \
