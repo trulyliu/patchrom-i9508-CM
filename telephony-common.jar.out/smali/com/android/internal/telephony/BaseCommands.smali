@@ -430,13 +430,24 @@
     return-void
 .end method
 
+.method public static getLteOnCdmaModeStatic()I
+    .locals 1
+
+    .prologue
+    .line 824
+    invoke-static {}, Landroid/telephony/TelephonyManager;->getLteOnCdmaModeStatic()I
+
+    move-result v0
+
+    return v0
+.end method
+
 
 # virtual methods
 .method public getLteOnCdmaMode()I
     .locals 1
 
     .prologue
-    .line 824
     invoke-static {}, Landroid/telephony/TelephonyManager;->getLteOnCdmaModeStatic()I
 
     move-result v0

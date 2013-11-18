@@ -37,7 +37,8 @@
         Landroid/view/ViewRootImpl$AsyncInputStage;,
         Landroid/view/ViewRootImpl$InputStage;,
         Landroid/view/ViewRootImpl$ViewRootHandler;,
-        Landroid/view/ViewRootImpl$SystemUiVisibilityInfo;
+        Landroid/view/ViewRootImpl$SystemUiVisibilityInfo;,
+        Landroid/view/ViewRootImpl$Injector;
     }
 .end annotation
 
@@ -399,6 +400,8 @@
 .field mSendWindowContentChangedAccessibilityEvent:Landroid/view/ViewRootImpl$SendWindowContentChangedAccessibilityEvent;
 
 .field mSeq:I
+
+.field mSkipResizedMsg:Z
 
 .field mSoftInputMode:I
 
@@ -3809,6 +3812,18 @@
 
     .line 2095
     return-object v4
+.end method
+
+.method public static getWindowSession(Landroid/os/Looper;)Landroid/view/IWindowSession;
+    .locals 1
+    .parameter "mainLooper"
+
+    .prologue
+    invoke-static {p0}, Landroid/view/WindowManagerGlobal;->getWindowSession(Landroid/os/Looper;)Landroid/view/IWindowSession;
+
+    move-result-object v0
+
+    return-object v0
 .end method
 
 .method private handleDragEvent(Landroid/view/DragEvent;)V
@@ -10109,6 +10124,24 @@
     return-void
 .end method
 
+.method createInputChannelAnyWay()V
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Landroid/view/ViewRootImpl;->mInputChannel:Landroid/view/InputChannel;
+
+    if-nez v0, :cond_0
+
+    new-instance v0, Landroid/view/InputChannel;
+
+    invoke-direct {v0}, Landroid/view/InputChannel;-><init>()V
+
+    iput-object v0, p0, Landroid/view/ViewRootImpl;->mInputChannel:Landroid/view/InputChannel;
+
+    :cond_0
+    return-void
+.end method
+
 .method public debug()V
     .locals 1
 
@@ -10341,6 +10374,26 @@
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     goto :goto_1
+.end method
+
+.method discardInputChannelBySetting()V
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Landroid/view/ViewRootImpl;->mWindowAttributes:Landroid/view/WindowManager$LayoutParams;
+
+    iget v0, v0, Landroid/view/WindowManager$LayoutParams;->inputFeatures:I
+
+    and-int/lit8 v0, v0, 0x2
+
+    if-eqz v0, :cond_0
+
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Landroid/view/ViewRootImpl;->mInputChannel:Landroid/view/InputChannel;
+
+    :cond_0
+    return-void
 .end method
 
 .method public dispatchAppVisibility(Z)V
@@ -15638,6 +15691,17 @@
     const/4 v0, 0x0
 
     return v0
+.end method
+
+.method public skipNextResizedMsg()V
+    .locals 1
+
+    .prologue
+    const/4 v0, 0x1
+
+    iput-boolean v0, p0, Landroid/view/ViewRootImpl;->mSkipResizedMsg:Z
+
+    return-void
 .end method
 
 .method public startActionModeForChild(Landroid/view/View;Landroid/view/ActionMode$Callback;)Landroid/view/ActionMode;

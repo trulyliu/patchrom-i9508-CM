@@ -21,7 +21,8 @@
         Landroid/content/pm/PackageParser$ParseComponentArgs;,
         Landroid/content/pm/PackageParser$ParsePackageItemArgs;,
         Landroid/content/pm/PackageParser$SplitPermissionInfo;,
-        Landroid/content/pm/PackageParser$NewPermissionInfo;
+        Landroid/content/pm/PackageParser$NewPermissionInfo;,
+        Landroid/content/pm/PackageParser$Injector;
     }
 .end annotation
 
@@ -7581,20 +7582,23 @@
 
     move-result v7
 
-    .line 3201
     .local v7, priority:I
+    move/from16 v0, p4
+
+    invoke-static {v0, v7}, Landroid/content/pm/PackageParser$Injector;->checkPriority(II)I
+
+    move-result v13
+
     move-object/from16 v0, p5
 
-    invoke-virtual {v0, v7}, Landroid/content/pm/PackageParser$IntentInfo;->setPriority(I)V
+    invoke-virtual {v0, v13}, Landroid/content/pm/PackageParser$IntentInfo;->setPriority(I)V
 
-    .line 3203
     const/4 v13, 0x0
 
     invoke-virtual {v8, v13}, Landroid/content/res/TypedArray;->peekValue(I)Landroid/util/TypedValue;
 
     move-result-object v11
 
-    .line 3205
     .local v11, v:Landroid/util/TypedValue;
     if-eqz v11, :cond_0
 
@@ -9874,6 +9878,12 @@
 
     invoke-virtual {v0, v3}, Landroid/content/res/TypedArray;->getNonResourceString(I)Ljava/lang/String;
 
+    move-result-object v3
+
+    move-object/from16 v0, v34
+
+    invoke-static {v0, v3}, Landroid/content/pm/PackageParser$Injector;->filterNameError(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
     move-result-object v29
 
     .line 1257
@@ -10986,6 +10996,10 @@
 
     invoke-static {v6, v12}, Landroid/content/pm/PackageParser;->validateName(Ljava/lang/String;Z)Ljava/lang/String;
 
+    move-result-object v12
+
+    invoke-static {v6, v12}, Landroid/content/pm/PackageParser$Injector;->filterNameError(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
     move-result-object v4
 
     .line 900
@@ -11676,13 +11690,15 @@
 
     goto :goto_0
 
-    .line 864
     :cond_5
     invoke-static {v1, v7}, Landroid/content/pm/PackageParser;->validateName(Ljava/lang/String;Z)Ljava/lang/String;
 
+    move-result-object v4
+
+    invoke-static {v1, v4}, Landroid/content/pm/PackageParser$Injector;->filterNameError(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
     move-result-object v0
 
-    .line 865
     .local v0, nameError:Ljava/lang/String;
     if-eqz v0, :cond_6
 
@@ -12517,24 +12533,19 @@
 
     if-eqz v2, :cond_2
 
-    .line 2637
     invoke-virtual/range {v16 .. v16}, Landroid/content/res/TypedArray;->recycle()V
 
-    .line 2638
     const/4 v6, 0x0
 
-    .line 2733
     .end local v6           #p:Landroid/content/pm/PackageParser$Provider;
     :cond_1
     :goto_0
     return-object v6
 
-    .line 2641
     .restart local v6       #p:Landroid/content/pm/PackageParser$Provider;
     :cond_2
-    const/4 v15, 0x0
+    const/4 v15, 0x1
 
-    .line 2643
     .local v15, providerExportedDefault:Z
     move-object/from16 v0, p1
 
@@ -16193,12 +16204,10 @@
 
     move-result v25
 
-    .line 536
     .local v25, cookie:I
     if-eqz v25, :cond_4
 
-    .line 537
-    new-instance v32, Landroid/content/res/Resources;
+    new-instance v32, Landroid/content/res/MiuiResources;
 
     const/4 v6, 0x0
 
@@ -16206,7 +16215,7 @@
 
     move-object/from16 v1, p3
 
-    invoke-direct {v0, v5, v1, v6}, Landroid/content/res/Resources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;)V
+    invoke-direct {v0, v5, v1, v6}, Landroid/content/res/MiuiResources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;)V
     :try_end_1
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
 

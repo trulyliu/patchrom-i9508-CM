@@ -71,6 +71,8 @@
 
 .field public static final START_FORWARD_AND_REQUEST_CONFLICT:I = -0x3
 
+.field public static final START_INCOMPATIBLE:I = 0x5
+
 .field public static final START_INTENT_NOT_RESOLVED:I = -0x1
 
 .field public static final START_NOT_ACTIVITY:I = -0x5
@@ -495,8 +497,24 @@
 
     move v4, v5
 
+    invoke-static {v0}, Landroid/app/ExtraActivityManager;->isHighEndGfx(Landroid/view/Display;)Z
+
+    move-result v4
+
     .line 403
     goto :goto_0
+.end method
+
+.method public static isHighEndGfx(Landroid/view/Display;)Z
+    .locals 1
+    .parameter "display"
+
+    .prologue
+    invoke-static {}, Landroid/app/ActivityManager;->isHighEndGfx()Z
+
+    move-result v0
+
+    return v0
 .end method
 
 .method public static isLargeRAM()Z

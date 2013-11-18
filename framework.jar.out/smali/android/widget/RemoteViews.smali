@@ -72,6 +72,8 @@
 
 .field private mBitmapCache:Landroid/widget/RemoteViews$BitmapCache;
 
+.field mDefaultTheme:I
+
 .field private mIsRoot:Z
 
 .field private mIsWidgetCollectionChild:Z
@@ -1297,6 +1299,10 @@
 
     .line 2370
     .local v0, c:Landroid/content/Context;
+    iget v4, p0, Landroid/widget/RemoteViews;->mDefaultTheme:I
+
+    invoke-virtual {v0, v4}, Landroid/content/Context;->setTheme(I)V
+
     const-string v4, "layout_inflater"
 
     invoke-virtual {v0, v4}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
@@ -1916,6 +1922,16 @@
     invoke-virtual {p0, p1, v0, p2}, Landroid/widget/RemoteViews;->setCharSequence(ILjava/lang/String;Ljava/lang/CharSequence;)V
 
     .line 2323
+    return-void
+.end method
+
+.method public setDefaultTheme(I)V
+    .locals 0
+    .parameter "id"
+
+    .prologue
+    iput p1, p0, Landroid/widget/RemoteViews;->mDefaultTheme:I
+
     return-void
 .end method
 

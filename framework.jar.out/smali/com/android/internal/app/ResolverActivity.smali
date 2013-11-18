@@ -11,7 +11,8 @@
     value = {
         Lcom/android/internal/app/ResolverActivity$ItemLongClickListener;,
         Lcom/android/internal/app/ResolverActivity$ResolveListAdapter;,
-        Lcom/android/internal/app/ResolverActivity$DisplayResolveInfo;
+        Lcom/android/internal/app/ResolverActivity$DisplayResolveInfo;,
+        Lcom/android/internal/app/ResolverActivity$Injector;
     }
 .end annotation
 
@@ -554,23 +555,28 @@
 
     if-eqz v1, :cond_2
 
-    .line 139
     :cond_0
     invoke-virtual {p0}, Lcom/android/internal/app/ResolverActivity;->finish()V
 
-    .line 175
     :cond_1
     :goto_1
+    iget-object v0, v9, Lcom/android/internal/app/AlertController$AlertParams;->mView:Landroid/view/View;
+
+    if-eqz v0, :cond_miui_00
+
+    move/from16 v0, p6
+
+    invoke-static {p0, v0}, Lcom/android/internal/app/ResolverActivity$Injector;->initialize(Lcom/android/internal/app/ResolverActivity;Z)V
+
+    :cond_miui_00
     return-void
 
-    .line 115
     .end local v8           #am:Landroid/app/ActivityManager;
     .end local v9           #ap:Lcom/android/internal/app/AlertController$AlertParams;
     .end local v11           #count:I
     :catch_0
     move-exception v12
 
-    .line 116
     .local v12, e:Landroid/os/RemoteException;
     const/4 v1, -0x1
 
@@ -637,28 +643,27 @@
 
     invoke-virtual {v1, v2}, Landroid/widget/GridView;->setOnItemLongClickListener(Landroid/widget/AdapterView$OnItemLongClickListener;)V
 
-    .line 148
     if-eqz p6, :cond_3
 
-    .line 149
     iget-object v1, p0, Lcom/android/internal/app/ResolverActivity;->mGrid:Landroid/widget/GridView;
 
     const/4 v2, 0x1
 
     invoke-virtual {v1, v2}, Landroid/widget/GridView;->setChoiceMode(I)V
 
-    .line 152
     :cond_3
     invoke-virtual {p0}, Lcom/android/internal/app/ResolverActivity;->resizeGrid()V
 
-    .line 163
     :goto_2
     invoke-virtual {p0}, Lcom/android/internal/app/ResolverActivity;->setupAlert()V
 
-    .line 165
     if-eqz p6, :cond_1
+    invoke-static {p0}, Lmiui/util/UiUtils;->isV5Ui(Landroid/content/Context;)Z
 
-    .line 166
+    move-result v1
+
+    if-nez v1, :cond_1
+
     const v1, 0x1020276
 
     invoke-virtual {p0, v1}, Lcom/android/internal/app/ResolverActivity;->findViewById(I)Landroid/view/View;
@@ -933,14 +938,7 @@
 
     invoke-virtual {v11, v0}, Landroid/content/IntentFilter;->addDataScheme(Ljava/lang/String;)V
 
-    .line 330
-    move-object/from16 v0, p1
-
-    iget-object v0, v0, Landroid/content/pm/ResolveInfo;->filter:Landroid/content/IntentFilter;
-
-    move-object/from16 v21, v0
-
-    invoke-virtual/range {v21 .. v21}, Landroid/content/IntentFilter;->authoritiesIterator()Ljava/util/Iterator;
+    invoke-static/range {p1 .. p1}, Lcom/android/internal/app/ResolverActivity$Injector;->getAuthoritiesIterator(Landroid/content/pm/ResolveInfo;)Ljava/util/Iterator;
 
     move-result-object v5
 
@@ -999,13 +997,7 @@
     .end local v4           #a:Landroid/content/IntentFilter$AuthorityEntry;
     .end local v18           #port:I
     :cond_5
-    move-object/from16 v0, p1
-
-    iget-object v0, v0, Landroid/content/pm/ResolveInfo;->filter:Landroid/content/IntentFilter;
-
-    move-object/from16 v21, v0
-
-    invoke-virtual/range {v21 .. v21}, Landroid/content/IntentFilter;->pathsIterator()Ljava/util/Iterator;
+    invoke-static/range {p1 .. p1}, Lcom/android/internal/app/ResolverActivity$Injector;->getPathsIterator(Landroid/content/pm/ResolveInfo;)Ljava/util/Iterator;
 
     move-result-object v16
 
@@ -1535,6 +1527,16 @@
     invoke-virtual {v1, v2}, Landroid/widget/GridView;->setNumColumns(I)V
 
     .line 180
+    return-void
+.end method
+
+.method setAlwaysUseOption(Z)V
+    .locals 0
+    .parameter "alwaysUseOption"
+
+    .prologue
+    iput-boolean p1, p0, Lcom/android/internal/app/ResolverActivity;->mAlwaysUseOption:Z
+
     return-void
 .end method
 

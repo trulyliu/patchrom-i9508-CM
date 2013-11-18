@@ -6,7 +6,8 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/android/server/wm/WindowStateAnimator$SurfaceTrace;
+        Lcom/android/server/wm/WindowStateAnimator$SurfaceTrace;,
+        Lcom/android/server/wm/WindowStateAnimator$Injector;
     }
 .end annotation
 

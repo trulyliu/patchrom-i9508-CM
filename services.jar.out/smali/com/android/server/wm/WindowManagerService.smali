@@ -18,7 +18,8 @@
         Lcom/android/server/wm/WindowManagerService$WindowChangeListener;,
         Lcom/android/server/wm/WindowManagerService$DragInputEventReceiver;,
         Lcom/android/server/wm/WindowManagerService$AppWindowAnimParams;,
-        Lcom/android/server/wm/WindowManagerService$LayoutFields;
+        Lcom/android/server/wm/WindowManagerService$LayoutFields;,
+        Lcom/android/server/wm/WindowManagerService$Injector;
     }
 .end annotation
 
@@ -9244,14 +9245,14 @@
     :try_end_3
     .catch Ljava/lang/RuntimeException; {:try_start_3 .. :try_end_3} :catch_1
 
-    .line 7962
     :cond_4
     :goto_5
+    invoke-static {p0}, Lcom/android/server/wm/WindowManagerService$Injector;->hideFloatingWindow(Lcom/android/server/wm/WindowManagerService;)V
+
     invoke-static {v9, v10}, Landroid/os/Trace;->traceEnd(J)V
 
     goto/16 :goto_0
 
-    .line 7931
     .restart local v1       #i:I
     .restart local v3       #tmp:Ljava/lang/Object;
     :catchall_0
@@ -18787,6 +18788,17 @@
 
     :cond_2
     iput-boolean v5, p0, Lcom/android/server/wm/WindowManagerService;->mSafeMode:Z
+
+    const/4 v6, 0x0
+    
+    if-lez v1, :cond_miui_0
+
+    if-lez v4, :cond_miui_0
+
+    const/4 v6, 0x1
+    
+    :cond_miui_0
+    iput-boolean v6, p0, Lcom/android/server/wm/WindowManagerService;->mSafeMode:Z
 
     .line 6801
     :try_start_0
@@ -29815,6 +29827,17 @@
     return-void
 .end method
 
+.method public rebootSafeMode()V
+    .locals 1
+
+    .prologue
+    const/4 v0, 0x0
+
+    invoke-virtual {p0, v0}, Lcom/android/server/wm/WindowManagerService;->rebootSafeMode(Z)V
+
+    return-void
+.end method
+
 .method public rebootSafeMode(Z)V
     .locals 1
     .parameter "confirm"
@@ -39530,6 +39553,17 @@
     const/4 v1, 0x0
 
     goto :goto_1
+.end method
+
+.method public shutdown()V
+    .locals 1
+
+    .prologue
+    const/4 v0, 0x0
+
+    invoke-virtual {p0, v0}, Lcom/android/server/wm/WindowManagerService;->shutdown(Z)V
+
+    return-void
 .end method
 
 .method public shutdown(Z)V

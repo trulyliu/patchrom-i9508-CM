@@ -211,19 +211,18 @@
 
     invoke-static {v1, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 142
     :cond_2
     add-int/lit8 v0, v0, 0x1
 
+    invoke-virtual {v5, v0}, Landroid/content/pm/ParceledListSlice;->setLastSlice(Z)V
+
     goto :goto_1
 
-    .line 144
     :cond_3
     iget v1, p0, Landroid/content/pm/ParceledListSlice$1;->val$N:I
 
     if-ge v0, v1, :cond_5
 
-    .line 145
     invoke-static {}, Landroid/content/pm/ParceledListSlice;->access$000()Z
 
     move-result v1

@@ -26,6 +26,8 @@
 # static fields
 .field private static final DESCRIPTOR:Ljava/lang/String; = "android.app.INotificationManager"
 
+.field static final TRANSACTION_areNotificationsEnabled:I = 0x8
+
 .field static final TRANSACTION_areNotificationsEnabledForPackage:I = 0x7
 
 .field static final TRANSACTION_cancelAllNotifications:I = 0x1
@@ -713,22 +715,46 @@
 
     move-result-object v1
 
-    .line 228
     .restart local v1       #_arg0:Landroid/service/notification/INotificationListener;
     invoke-virtual {p0, v1}, Landroid/app/INotificationManager$Stub;->getActiveNotificationsFromListener(Landroid/service/notification/INotificationListener;)[Landroid/service/notification/StatusBarNotification;
 
     move-result-object v8
 
-    .line 229
     .restart local v8       #_result:[Landroid/service/notification/StatusBarNotification;
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    .line 230
     invoke-virtual {p3, v8, v9}, Landroid/os/Parcel;->writeTypedArray([Landroid/os/Parcelable;I)V
 
     goto/16 :goto_0
 
-    .line 39
+    .end local v1           #_arg0:Ljava/lang/String;
+    .end local v7           #_result:Z
+    :sswitch_8
+    const-string v0, "android.app.INotificationManager"
+
+    invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+
+    invoke-virtual {p2}, Landroid/os/Parcel;->readString()Ljava/lang/String;
+
+    move-result-object v1
+
+    .restart local v1       #_arg0:Ljava/lang/String;
+    invoke-virtual {p0, v1}, Landroid/app/INotificationManager$Stub;->areNotificationsEnabled(Ljava/lang/String;)Z
+
+    move-result v7
+
+    .restart local v7       #_result:Z
+    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+
+    if-eqz v7, :cond_3
+
+    move v2, v8
+
+    :cond_3
+    invoke-virtual {p3, v2}, Landroid/os/Parcel;->writeInt(I)V
+
+    goto/16 :goto_0
+
     nop
 
     :sswitch_data_0

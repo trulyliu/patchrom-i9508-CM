@@ -3,6 +3,14 @@
 .source "EdgeEffect.java"
 
 
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Landroid/widget/EdgeEffect$Injector;
+    }
+.end annotation
+
+
 # static fields
 .field private static final EPSILON:F = 0.0010f
 

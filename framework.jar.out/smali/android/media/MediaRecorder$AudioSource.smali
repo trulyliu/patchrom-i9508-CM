@@ -23,6 +23,8 @@
 
 .field public static final FM_RX_A2DP:I = 0xa
 
+.field public static final FM:I = 0x9
+
 .field public static final MIC:I = 0x1
 
 .field public static final REMOTE_SUBMIX_SOURCE:I = 0x8

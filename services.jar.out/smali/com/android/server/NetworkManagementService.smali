@@ -644,40 +644,32 @@
     .parameter "wifiConfig"
 
     .prologue
-    .line 1053
     invoke-virtual {p0}, Landroid/net/wifi/WifiConfiguration;->getAuthType()I
 
     move-result v0
 
-    packed-switch v0, :pswitch_data_0
+    sparse-switch v0, :sswitch_data_0
 
-    .line 1059
-    :pswitch_0
     const-string v0, "open"
 
     :goto_0
     return-object v0
 
-    .line 1055
-    :pswitch_1
+    :sswitch_0
     const-string v0, "wpa-psk"
 
     goto :goto_0
 
-    .line 1057
-    :pswitch_2
+    :sswitch_1
     const-string v0, "wpa2-psk"
 
     goto :goto_0
 
-    .line 1053
-    :pswitch_data_0
-    .packed-switch 0x1
-        :pswitch_1
-        :pswitch_0
-        :pswitch_0
-        :pswitch_2
-    .end packed-switch
+    :sswitch_data_0
+    .sparse-switch
+        0x1 -> :sswitch_0
+        0x6 -> :sswitch_1
+    .end sparse-switch
 .end method
 
 .method private modifyNat(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V

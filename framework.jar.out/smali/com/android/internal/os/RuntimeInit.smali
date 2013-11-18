@@ -7,7 +7,8 @@
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
         Lcom/android/internal/os/RuntimeInit$Arguments;,
-        Lcom/android/internal/os/RuntimeInit$UncaughtHandler;
+        Lcom/android/internal/os/RuntimeInit$UncaughtHandler;,
+        Lcom/android/internal/os/RuntimeInit$Injector;
     }
 .end annotation
 
@@ -151,6 +152,17 @@
     invoke-static {v2, v3}, Landroid/util/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     goto :goto_0
+.end method
+
+.method public static callGetDefaultUserAgent()Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    invoke-static {}, Lcom/android/internal/os/RuntimeInit;->getDefaultUserAgent()Ljava/lang/String;
+
+    move-result-object v0
+
+    return-object v0
 .end method
 
 .method private static final commonInit()V
@@ -317,20 +329,20 @@
 
     if-lez v4, :cond_0
 
-    .line 162
     const-string v4, "; "
 
     invoke-virtual {v2, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 163
     invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 166
     .end local v1           #model:Ljava/lang/String;
     :cond_0
-    sget-object v0, Landroid/os/Build;->ID:Ljava/lang/String;
+    sget-object v4, Landroid/os/Build;->ID:Ljava/lang/String;
 
-    .line 167
+    invoke-static {v2, v4}, Lcom/android/internal/os/RuntimeInit$Injector;->appendMiuiVersion(Ljava/lang/StringBuilder;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
     .local v0, id:Ljava/lang/String;
     invoke-virtual {v0}, Ljava/lang/String;->length()I
 

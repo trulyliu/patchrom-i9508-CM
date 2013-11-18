@@ -15,6 +15,14 @@
 # static fields
 .field private static LOG_TAG:Ljava/lang/String;
 
+.field public static PRESENTATION_ALLOWED:I
+
+.field public static PRESENTATION_PAYPHONE:I
+
+.field public static PRESENTATION_RESTRICTED:I
+
+.field public static PRESENTATION_UNKNOWN:I
+
 
 # instance fields
 .field protected mCnapName:Ljava/lang/String;

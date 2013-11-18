@@ -24,6 +24,8 @@
 
 .field public static final FILE_TYPE_AMR:I = 0x4
 
+.field public static final FILE_TYPE_APE:I = 0x3e9
+
 .field public static final FILE_TYPE_ASF:I = 0x1a
 
 .field public static final FILE_TYPE_AVI:I = 0x1d
@@ -63,6 +65,8 @@
 .field public static final FILE_TYPE_MKA:I = 0x9
 
 .field public static final FILE_TYPE_MKV:I = 0x1b
+
+.field public static final FILE_TYPE_MOV:I = 0xcc
 
 .field public static final FILE_TYPE_MP2PS:I = 0xc8
 
@@ -144,7 +148,7 @@
 
 .field private static final LAST_VIDEO_FILE_TYPE:I = 0x1f
 
-.field private static final LAST_VIDEO_FILE_TYPE2:I = 0xc8
+.field private static final LAST_VIDEO_FILE_TYPE2:I = 0xcf
 
 .field private static final sFileTypeMap:Ljava/util/HashMap;
     .annotation system Ldalvik/annotation/Signature;
@@ -326,23 +330,20 @@
 
     invoke-static {v0, v1, v2}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 195
     const-string v0, "DIVX"
 
     const/16 v1, 0x1f
 
-    const-string/jumbo v2, "video/divx"
+    const-string v2, "video/divx"
 
     invoke-static {v0, v1, v2}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 196
-    invoke-static {}, Landroid/media/MediaFile;->isWMAEnabled()Z
+    invoke-static {}, Landroid/media/MediaFile$Injector;->isWMAEnabled()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 197
     const-string v0, "WMA"
 
     const/4 v1, 0x6
@@ -882,25 +883,24 @@
 
     invoke-static {v0, v1, v2}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 265
     const-string v0, "MPG"
 
     const/16 v1, 0xc8
 
-    const-string/jumbo v2, "video/mp2p"
+    const-string v2, "video/mp2p"
 
     invoke-static {v0, v1, v2}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 266
     const-string v0, "MPEG"
 
     const/16 v1, 0xc8
 
-    const-string/jumbo v2, "video/mp2p"
+    const-string v2, "video/mp2p"
 
     invoke-static {v0, v1, v2}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 267
+    invoke-static {}, Landroid/media/MediaFile$Injector;->add()V
+
     return-void
 .end method
 
@@ -1431,6 +1431,8 @@
 
     :cond_0
     if-lt p0, v1, :cond_2
+
+    const/16 v1, 0xcf
 
     if-gt p0, v1, :cond_2
 
