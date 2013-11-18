@@ -1,0 +1,61 @@
+*** GsmServiceStateTracker.smali	2013-11-18 12:22:18.114343439 +0800
+--- GsmServiceStateTracker.smali	2013-11-18 12:19:20.766340110 +0800
+***************
+*** 2343,2349 ****
+  
+      invoke-virtual {v0, v1, v2}, Lcom/android/internal/telephony/gsm/GSMPhone;->setSystemProperty(Ljava/lang/String;Ljava/lang/String;)V
+  
+!     if-nez v24, :cond_18
+  
+      const-string v34, "operatorNumeric is null"
+  
+--- 2344,2354 ----
+  
+      invoke-virtual {v0, v1, v2}, Lcom/android/internal/telephony/gsm/GSMPhone;->setSystemProperty(Ljava/lang/String;Ljava/lang/String;)V
+  
+!     invoke-static/range {v24 .. v24}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+! 
+!     move-result v34
+! 
+!     if-eqz v34, :cond_18
+  
+      const-string v34, "operatorNumeric is null"
+  
+***************
+*** 7973,7978 ****
+  
+      .local v6, spn:Ljava/lang/String;
+      :goto_3
+      invoke-static {v6}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+  
+      move-result v9
+--- 7978,7987 ----
+  
+      .local v6, spn:Ljava/lang/String;
+      :goto_3
++     invoke-static {p0, v6}, Lcom/android/internal/telephony/gsm/GsmServiceStateTracker$Injector;->getSpn(Lcom/android/internal/telephony/gsm/GsmServiceStateTracker;Ljava/lang/String;)Ljava/lang/String;
++ 
++     move-result-object v6
++ 
+      invoke-static {v6}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+  
+      move-result v9
+***************
+*** 8154,8159 ****
+  
+      move-result-object v2
+  
+      invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+  
+      move-result v9
+--- 8163,8172 ----
+  
+      move-result-object v2
+  
++     invoke-static {p0, v2}, Lcom/android/internal/telephony/gsm/GsmServiceStateTracker$Injector;->getPlmn(Lcom/android/internal/telephony/gsm/GsmServiceStateTracker;Ljava/lang/String;)Ljava/lang/String;
++ 
++     move-result-object v2
++ 
+      invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+  
+      move-result v9

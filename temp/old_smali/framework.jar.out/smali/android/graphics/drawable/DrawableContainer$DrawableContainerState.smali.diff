@@ -1,0 +1,20 @@
+*** ./smali/android/graphics/drawable/DrawableContainer$DrawableContainerState.smali	2013-11-18 12:21:38.802342701 +0800
+--- /opt/opensource/micode/9508cm/temp/new_smali/framework.jar.out/./smali/android/graphics/drawable/DrawableContainer$DrawableContainerState.smali	2013-11-18 12:18:42.654339394 +0800
+***************
+*** 782,787 ****
+--- 782,796 ----
+      return v3
+  .end method
+  
++ .method public final getVariablePadding()Z
++     .locals 1
++ 
++     .prologue
++     iget-boolean v0, p0, Landroid/graphics/drawable/DrawableContainer$DrawableContainerState;->mVariablePadding:Z
++ 
++     return v0
++ .end method
++ 
+  .method public growArray(II)V
+      .locals 3
+      .parameter "oldSize"

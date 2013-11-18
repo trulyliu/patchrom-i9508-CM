@@ -1,0 +1,19 @@
+*** ./smali/android/net/wifi/WifiApConfigStore.smali	2013-11-18 12:22:10.338343293 +0800
+--- /opt/opensource/micode/9508cm/temp/new_smali/framework.jar.out/./smali/android/net/wifi/WifiApConfigStore.smali	2013-11-18 12:19:13.330339970 +0800
+***************
+*** 266,272 ****
+  
+      iget-object v2, v0, Landroid/net/wifi/WifiConfiguration;->allowedKeyManagement:Ljava/util/BitSet;
+  
+!     const/4 v3, 0x4
+  
+      invoke-virtual {v2, v3}, Ljava/util/BitSet;->set(I)V
+  
+--- 266,272 ----
+  
+      iget-object v2, v0, Landroid/net/wifi/WifiConfiguration;->allowedKeyManagement:Ljava/util/BitSet;
+  
+!     const/4 v3, 0x6
+  
+      invoke-virtual {v2, v3}, Ljava/util/BitSet;->set(I)V
+  

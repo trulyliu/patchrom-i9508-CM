@@ -1,0 +1,20 @@
+*** ./smali/android/widget/Toast$TN.smali	2013-11-18 12:21:59.298343086 +0800
+--- /opt/opensource/micode/9508cm/temp/new_smali/framework.jar.out/./smali/android/widget/Toast$TN.smali	2013-11-18 12:19:02.626339769 +0800
+***************
+*** 172,177 ****
+--- 172,186 ----
+  
+  
+  # virtual methods
++ .method getParams()Landroid/view/WindowManager$LayoutParams;
++     .locals 1
++ 
++     .prologue
++     iget-object v0, p0, Landroid/widget/Toast$TN;->mParams:Landroid/view/WindowManager$LayoutParams;
++ 
++     return-object v0
++ .end method
++ 
+  .method public handleHide()V
+      .locals 2
+  

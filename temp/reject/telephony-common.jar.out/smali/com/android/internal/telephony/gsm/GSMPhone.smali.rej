@@ -1,0 +1,92 @@
+*** GSMPhone.smali	2013-11-18 12:22:18.050343438 +0800
+--- GSMPhone.smali	2013-11-18 12:19:20.710340109 +0800
+***************
+*** 7,13 ****
+  .annotation system Ldalvik/annotation/MemberClasses;
+      value = {
+          Lcom/android/internal/telephony/gsm/GSMPhone$2;,
+!         Lcom/android/internal/telephony/gsm/GSMPhone$NetworkSelectMessage;
+      }
+  .end annotation
+  
+--- 7,14 ----
+  .annotation system Ldalvik/annotation/MemberClasses;
+      value = {
+          Lcom/android/internal/telephony/gsm/GSMPhone$2;,
+!         Lcom/android/internal/telephony/gsm/GSMPhone$NetworkSelectMessage;,
+!         Lcom/android/internal/telephony/gsm/GSMPhone$Injector;
+      }
+  .end annotation
+  
+***************
+*** 52,58 ****
+  
+  .field mSST:Lcom/android/internal/telephony/gsm/GsmServiceStateTracker;
+  
+! .field mSimPhoneBookIntManager:Lcom/android/internal/telephony/gsm/SimPhoneBookInterfaceManager;
+  
+  .field mSimSmsIntManager:Lcom/android/internal/telephony/gsm/SimSmsInterfaceManager;
+  
+--- 53,59 ----
+  
+  .field mSST:Lcom/android/internal/telephony/gsm/GsmServiceStateTracker;
+  
+! .field mSimPhoneBookIntManager:Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;
+  
+  .field mSimSmsIntManager:Lcom/android/internal/telephony/gsm/SimSmsInterfaceManager;
+  
+***************
+*** 3730,3738 ****
+  
+      invoke-direct {p0}, Lcom/android/internal/telephony/gsm/GSMPhone;->unregisterForSimRecordEvents()V
+  
+!     iget-object v2, p0, Lcom/android/internal/telephony/gsm/GSMPhone;->mSimPhoneBookIntManager:Lcom/android/internal/telephony/gsm/SimPhoneBookInterfaceManager;
+  
+!     invoke-virtual {v2, v4}, Lcom/android/internal/telephony/gsm/SimPhoneBookInterfaceManager;->updateIccRecords(Lcom/android/internal/telephony/IccRecords;)V
+  
+      :cond_2
+      iget-object v2, p0, Lcom/android/internal/telephony/gsm/GSMPhone;->mIccRecords:Ljava/util/concurrent/atomic/AtomicReference;
+--- 3739,3747 ----
+  
+      invoke-direct {p0}, Lcom/android/internal/telephony/gsm/GSMPhone;->unregisterForSimRecordEvents()V
+  
+!     iget-object v2, p0, Lcom/android/internal/telephony/gsm/GSMPhone;->mSimPhoneBookIntManager:Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;
+  
+!     invoke-virtual {v2, v4}, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->updateIccRecords(Lcom/android/internal/telephony/IccRecords;)V
+  
+      :cond_2
+      iget-object v2, p0, Lcom/android/internal/telephony/gsm/GSMPhone;->mIccRecords:Ljava/util/concurrent/atomic/AtomicReference;
+***************
+*** 3764,3770 ****
+  
+      invoke-direct {p0}, Lcom/android/internal/telephony/gsm/GSMPhone;->registerForSimRecordEvents()V
+  
+!     iget-object v3, p0, Lcom/android/internal/telephony/gsm/GSMPhone;->mSimPhoneBookIntManager:Lcom/android/internal/telephony/gsm/SimPhoneBookInterfaceManager;
+  
+      iget-object v2, p0, Lcom/android/internal/telephony/gsm/GSMPhone;->mIccRecords:Ljava/util/concurrent/atomic/AtomicReference;
+  
+--- 3773,3779 ----
+  
+      invoke-direct {p0}, Lcom/android/internal/telephony/gsm/GSMPhone;->registerForSimRecordEvents()V
+  
+!     iget-object v3, p0, Lcom/android/internal/telephony/gsm/GSMPhone;->mSimPhoneBookIntManager:Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;
+  
+      iget-object v2, p0, Lcom/android/internal/telephony/gsm/GSMPhone;->mIccRecords:Ljava/util/concurrent/atomic/AtomicReference;
+  
+***************
+*** 3774,3780 ****
+  
+      check-cast v2, Lcom/android/internal/telephony/IccRecords;
+  
+!     invoke-virtual {v3, v2}, Lcom/android/internal/telephony/gsm/SimPhoneBookInterfaceManager;->updateIccRecords(Lcom/android/internal/telephony/IccRecords;)V
+  
+      goto :goto_0
+  .end method
+--- 3783,3789 ----
+  
+      check-cast v2, Lcom/android/internal/telephony/IccRecords;
+  
+!     invoke-virtual {v3, v2}, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->updateIccRecords(Lcom/android/internal/telephony/IccRecords;)V
+  
+      goto :goto_0
+  .end method

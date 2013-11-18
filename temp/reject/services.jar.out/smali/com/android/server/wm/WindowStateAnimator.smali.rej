@@ -1,0 +1,38 @@
+*** WindowStateAnimator.smali	2013-11-18 12:21:26.358342466 +0800
+--- WindowStateAnimator.smali	2013-11-18 12:18:30.422339164 +0800
+***************
+*** 111,116 ****
+  
+  .field mLocalAnimating:Z
+  
+  .field mPendingDestroySurface:Landroid/view/Surface;
+  
+  .field final mPolicy:Landroid/view/WindowManagerPolicy;
+--- 112,119 ----
+  
+  .field mLocalAnimating:Z
+  
++ .field mMiuiHidden:Z
++ 
+  .field mPendingDestroySurface:Landroid/view/Surface;
+  
+  .field final mPolicy:Landroid/view/WindowManagerPolicy;
+***************
+*** 5071,5079 ****
+  
+      iput-boolean v3, p0, Lcom/android/server/wm/WindowStateAnimator;->mSurfaceShown:Z
+  
+!     iget-object v3, p0, Lcom/android/server/wm/WindowStateAnimator;->mSurface:Landroid/view/Surface;
+! 
+!     invoke-virtual {v3}, Landroid/view/Surface;->show()V
+  
+      iget-object v3, p0, Lcom/android/server/wm/WindowStateAnimator;->mWin:Lcom/android/server/wm/WindowState;
+  
+--- 5074,5080 ----
+  
+      iput-boolean v3, p0, Lcom/android/server/wm/WindowStateAnimator;->mSurfaceShown:Z
+  
+!     invoke-static {p0}, Lcom/android/server/wm/WindowStateAnimator$Injector;->showSurface(Lcom/android/server/wm/WindowStateAnimator;)V
+  
+      iget-object v3, p0, Lcom/android/server/wm/WindowStateAnimator;->mWin:Lcom/android/server/wm/WindowState;
+  

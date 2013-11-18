@@ -1,0 +1,70 @@
+*** ConnectivityService.smali	2013-11-18 12:21:28.298342504 +0800
+--- ConnectivityService.smali	2013-11-18 12:18:32.374339201 +0800
+***************
+*** 417,422 ****
+  
+      invoke-static {v2}, Lcom/android/server/ConnectivityService;->log(Ljava/lang/String;)V
+  
+      new-instance v13, Landroid/os/HandlerThread;
+  
+      const-string v2, "ConnectivityServiceThread"
+--- 418,425 ----
+  
+      invoke-static {v2}, Lcom/android/server/ConnectivityService;->log(Ljava/lang/String;)V
+  
++     invoke-static/range {p1 .. p1}, Lcom/miui/server/FirewallService;->setupService(Landroid/content/Context;)V
++ 
+      new-instance v13, Landroid/os/HandlerThread;
+  
+      const-string v2, "ConnectivityServiceThread"
+***************
+*** 706,712 ****
+  
+      iput-object v2, v0, Lcom/android/server/ConnectivityService;->mRadioAttributes:[Lcom/android/server/ConnectivityService$RadioAttributes;
+  
+!     const/16 v2, 0xe
+  
+      new-array v2, v2, [Landroid/net/NetworkConfig;
+  
+--- 709,715 ----
+  
+      iput-object v2, v0, Lcom/android/server/ConnectivityService;->mRadioAttributes:[Lcom/android/server/ConnectivityService$RadioAttributes;
+  
+!     const/16 v2, 0xf
+  
+      new-array v2, v2, [Landroid/net/NetworkConfig;
+  
+***************
+*** 1365,1371 ****
+  
+      .end local v8           #arr$:[Landroid/net/NetworkConfig;
+      :cond_12
+!     const/16 v2, 0xe
+  
+      new-array v2, v2, [Ljava/util/ArrayList;
+  
+--- 1368,1374 ----
+  
+      .end local v8           #arr$:[Landroid/net/NetworkConfig;
+      :cond_12
+!     const/16 v2, 0xf
+  
+      new-array v2, v2, [Ljava/util/ArrayList;
+  
+***************
+*** 7302,7307 ****
+      move-result v8
+  
+      .local v8, usedNetworkType:I
+      iget-object v10, p0, Lcom/android/server/ConnectivityService;->mNetTrackers:[Landroid/net/NetworkStateTracker;
+  
+      aget-object v6, v10, v8
+--- 7305,7312 ----
+      move-result v8
+  
+      .local v8, usedNetworkType:I
++     invoke-static {p1, v8}, Lcom/android/server/ConnectivityService$Injector;->stopUsingNetworkFeature(Lcom/android/server/ConnectivityService$FeatureUser;I)V
++ 
+      iget-object v10, p0, Lcom/android/server/ConnectivityService;->mNetTrackers:[Landroid/net/NetworkStateTracker;
+  
+      aget-object v6, v10, v8

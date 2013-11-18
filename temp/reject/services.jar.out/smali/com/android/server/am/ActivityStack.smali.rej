@@ -1,0 +1,68 @@
+*** ActivityStack.smali	2013-11-18 12:21:24.398342431 +0800
+--- ActivityStack.smali	2013-11-18 12:18:28.562339130 +0800
+***************
+*** 6,13 ****
+  # annotations
+  .annotation system Ldalvik/annotation/MemberClasses;
+      value = {
+          Lcom/android/server/am/ActivityStack$ScheduleDestroyArgs;,
+!         Lcom/android/server/am/ActivityStack$ActivityState;
+      }
+  .end annotation
+  
+--- 6,15 ----
+  # annotations
+  .annotation system Ldalvik/annotation/MemberClasses;
+      value = {
++         Lcom/android/server/am/ActivityStack$CpuBooster;,
+          Lcom/android/server/am/ActivityStack$ScheduleDestroyArgs;,
+!         Lcom/android/server/am/ActivityStack$ActivityState;,
+!         Lcom/android/server/am/ActivityStack$Injector;
+      }
+  .end annotation
+  
+***************
+*** 399,404 ****
+      iget-object v1, p0, Lcom/android/server/am/ActivityStack;->mLaunchingActivity:Landroid/os/PowerManager$WakeLock;
+  
+      invoke-virtual {v1, v3}, Landroid/os/PowerManager$WakeLock;->setReferenceCounted(Z)V
+  
+      return-void
+  .end method
+--- 405,419 ----
+      iget-object v1, p0, Lcom/android/server/am/ActivityStack;->mLaunchingActivity:Landroid/os/PowerManager$WakeLock;
+  
+      invoke-virtual {v1, v3}, Landroid/os/PowerManager$WakeLock;->setReferenceCounted(Z)V
++     new-instance v1, Lcom/android/server/am/ActivityStack$CpuBooster;
++ 
++     iget-object v2, p0, Lcom/android/server/am/ActivityStack;->mService:Lcom/android/server/am/ActivityManagerService;
++ 
++     iget-object v3, p0, Lcom/android/server/am/ActivityStack;->mHandler:Landroid/os/Handler;
++ 
++     invoke-direct {v1, v2, v3}, Lcom/android/server/am/ActivityStack$CpuBooster;-><init>(Lcom/android/server/am/ActivityManagerService;Landroid/os/Handler;)V
++ 
++     iput-object v1, p0, Lcom/android/server/am/ActivityStack;->mCpuBooster:Lcom/android/server/am/ActivityStack$CpuBooster;
+  
+      return-void
+  .end method
+***************
+*** 12156,12161 ****
+      .parameter "outActivity"
+  
+      .prologue
+      const/16 v23, 0x0
+  
+      .local v23, err:I
+--- 12211,12222 ----
+      .parameter "outActivity"
+  
+      .prologue
++     move-object/from16 v0, p0
++ 
++     iget-object v3, v0, Lcom/android/server/am/ActivityStack;->mCpuBooster:Lcom/android/server/am/ActivityStack$CpuBooster;
++ 
++     invoke-virtual {v3}, Lcom/android/server/am/ActivityStack$CpuBooster;->start()V
++ 
+      const/16 v23, 0x0
+  
+      .local v23, err:I

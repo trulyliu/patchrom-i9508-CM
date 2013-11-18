@@ -1,0 +1,13 @@
+*** ./smali/com/android/internal/app/LocalePicker.smali	2013-11-18 12:22:16.150343402 +0800
+--- /opt/opensource/micode/9508cm/temp/new_smali/framework.jar.out/./smali/com/android/internal/app/LocalePicker.smali	2013-11-18 12:19:18.790340073 +0800
+***************
+*** 359,364 ****
+--- 359,366 ----
+      :cond_4
+      invoke-static {v6}, Ljava/util/Arrays;->sort([Ljava/lang/Object;)V
+  
++     invoke-static {v6}, Lmiui/util/ExtraLocalePicker;->adjustLocaleOrder([Lcom/android/internal/app/LocalePicker$LocaleInfo;)V
++ 
+      const-string v2, "layout_inflater"
+  
+      move-object/from16 v0, p0

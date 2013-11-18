@@ -1,0 +1,31 @@
+*** View.smali	2013-11-18 12:21:48.490342883 +0800
+--- View.smali	2013-11-18 12:18:51.974339569 +0800
+***************
+*** 2685,2690 ****
+      goto/16 :goto_1
+  
+      :pswitch_24
+      const/16 v47, 0x1
+  
+      move/from16 v0, v47
+--- 2694,2713 ----
+      goto/16 :goto_1
+  
+      :pswitch_24
++     const/16 v47, 0x0
++ 
++     move/from16 v0, v47
++ 
++     invoke-virtual {v6, v7, v0}, Landroid/content/res/TypedArray;->getBoolean(IZ)Z
++ 
++     move-result v47
++ 
++     move/from16 v0, v47
++ 
++     move-object/from16 v1, p0
++ 
++     iput-boolean v0, v1, Landroid/view/View;->mHapticEnabledExplicitly:Z
++ 
+      const/16 v47, 0x1
+  
+      move/from16 v0, v47

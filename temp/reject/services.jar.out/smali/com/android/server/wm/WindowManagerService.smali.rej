@@ -1,0 +1,77 @@
+*** WindowManagerService.smali	2013-11-18 12:21:26.330342467 +0800
+--- WindowManagerService.smali	2013-11-18 12:18:30.402339164 +0800
+***************
+*** 6939,6944 ****
+      .end local v5           #pos:I
+      .end local v7           #windows:Lcom/android/server/wm/WindowList;
+      :cond_6
+      iget-object v8, p0, Lcom/android/server/wm/WindowManagerService;->mInputMonitor:Lcom/android/server/wm/InputMonitor;
+  
+      invoke-virtual {v8}, Lcom/android/server/wm/InputMonitor;->setUpdateInputWindowsNeededLw()V
+--- 6940,6954 ----
+      .end local v5           #pos:I
+      .end local v7           #windows:Lcom/android/server/wm/WindowList;
+      :cond_6
++     invoke-static {p0, p2}, Lcom/android/server/wm/WindowManagerService$Injector;->updateFocusAndLayout(Lcom/android/server/wm/WindowManagerService;I)Z
++ 
++     move-result v8
++ 
++     if-nez v8, :cond_miui_0
++ 
++     return-void
++ 
++     :cond_miui_0
+      iget-object v8, p0, Lcom/android/server/wm/WindowManagerService;->mInputMonitor:Lcom/android/server/wm/InputMonitor;
+  
+      invoke-virtual {v8}, Lcom/android/server/wm/InputMonitor;->setUpdateInputWindowsNeededLw()V
+***************
+*** 28798,28803 ****
+      return v30
+  
+      :cond_1
+      move-object/from16 v0, v28
+  
+      iget-object v0, v0, Lcom/android/server/wm/WindowState;->mWinAnimator:Lcom/android/server/wm/WindowStateAnimator;
+--- 28832,28839 ----
+      return v30
+  
+      :cond_1
++     invoke-static/range {v28 .. v28}, Lcom/android/server/wm/WindowManagerService$Injector;->restoreFloatingWindowState(Lcom/android/server/wm/WindowState;)V
++ 
+      move-object/from16 v0, v28
+  
+      iget-object v0, v0, Lcom/android/server/wm/WindowState;->mWinAnimator:Lcom/android/server/wm/WindowStateAnimator;
+***************
+*** 29899,29904 ****
+  
+      invoke-virtual {v0, v1}, Lcom/android/server/wm/InputMonitor;->updateInputWindowsLw(Z)V
+  
+      monitor-exit v31
+      :try_end_3
+      .catchall {:try_start_3 .. :try_end_3} :catchall_0
+--- 29935,29942 ----
+  
+      invoke-virtual {v0, v1}, Lcom/android/server/wm/InputMonitor;->updateInputWindowsLw(Z)V
+  
++     invoke-static/range {v28 .. v28}, Lcom/android/server/wm/WindowManagerService$Injector;->saveFloatingWindowState(Lcom/android/server/wm/WindowState;)V
++ 
+      monitor-exit v31
+      :try_end_3
+      .catchall {:try_start_3 .. :try_end_3} :catchall_0
+***************
+*** 30109,30114 ****
+  
+      invoke-static/range {v18 .. v19}, Landroid/os/Binder;->restoreCallingIdentity(J)V
+  
+      const/16 v30, 0x0
+  
+      monitor-exit v31
+--- 30147,30154 ----
+  
+      invoke-static/range {v18 .. v19}, Landroid/os/Binder;->restoreCallingIdentity(J)V
+  
++     invoke-static/range {v28 .. v28}, Lcom/android/server/wm/WindowManagerService$Injector;->saveFloatingWindowState(Lcom/android/server/wm/WindowState;)V
++ 
+      const/16 v30, 0x0
+  
+      monitor-exit v31

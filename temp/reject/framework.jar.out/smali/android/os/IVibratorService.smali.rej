@@ -1,0 +1,25 @@
+*** IVibratorService.smali	2013-11-18 12:21:44.290342804 +0800
+--- IVibratorService.smali	2013-11-18 12:18:48.046339495 +0800
+***************
+*** 39,44 ****
+      .end annotation
+  .end method
+  
+  .method public abstract vibratePattern([JILandroid/os/IBinder;)V
+      .annotation system Ldalvik/annotation/Throws;
+          value = {
+--- 39,52 ----
+      .end annotation
+  .end method
+  
++ .method public abstract vibrateEx([BLandroid/os/IBinder;)V
++     .annotation system Ldalvik/annotation/Throws;
++         value = {
++             Landroid/os/RemoteException;
++         }
++     .end annotation
++ .end method
++ 
+  .method public abstract vibratePattern([JILandroid/os/IBinder;)V
+      .annotation system Ldalvik/annotation/Throws;
+          value = {

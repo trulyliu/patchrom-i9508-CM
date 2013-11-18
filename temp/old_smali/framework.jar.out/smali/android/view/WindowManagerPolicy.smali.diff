@@ -1,0 +1,13 @@
+*** ./smali/android/view/WindowManagerPolicy.smali	2013-11-18 12:21:48.954342892 +0800
+--- /opt/opensource/micode/9508cm/temp/new_smali/framework.jar.out/./smali/android/view/WindowManagerPolicy.smali	2013-11-18 12:18:52.326339576 +0800
+***************
+*** 22,27 ****
+--- 22,29 ----
+  
+  .field public static final ACTION_PASS_TO_USER:I = 0x1
+  
++ .field public static final ACTION_POKE_USER_ACTIVITY:I = 0x2
++ 
+  .field public static final ACTION_WAKE_UP:I = 0x2
+  
+  .field public static final EXTRA_HDMI_PLUGGED_STATE:Ljava/lang/String; = "state"

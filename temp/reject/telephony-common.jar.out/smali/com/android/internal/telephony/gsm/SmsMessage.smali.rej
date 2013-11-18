@@ -1,0 +1,30 @@
+*** SmsMessage.smali	2013-11-18 12:22:17.918343434 +0800
+--- SmsMessage.smali	2013-11-18 12:19:20.590340106 +0800
+***************
+*** 1216,1225 ****
+  
+      goto :goto_0
+  
+      :pswitch_data_0
+      .packed-switch 0x0
+          :pswitch_1
+!         :pswitch_0
+          :pswitch_2
+          :pswitch_1
+      .end packed-switch
+--- 1216,1230 ----
+  
+      goto :goto_0
+  
++     :pswitch_miui_0
++     invoke-virtual {p0, v1, v0}, Lcom/android/internal/telephony/gsm/SmsMessage;->parseSmsSubmit(Lcom/android/internal/telephony/gsm/SmsMessage$PduParser;I)V
++ 
++     goto :goto_0
++     
+      :pswitch_data_0
+      .packed-switch 0x0
+          :pswitch_1
+!         :pswitch_miui_0
+          :pswitch_2
+          :pswitch_1
+      .end packed-switch

@@ -1,0 +1,13 @@
+*** AdnRecordCache.smali	2013-11-18 12:22:18.842343453 +0800
+--- AdnRecordCache.smali	2013-11-18 12:19:21.494340123 +0800
+***************
+*** 1,4 ****
+! .class public final Lcom/android/internal/telephony/AdnRecordCache;
+  .super Landroid/os/Handler;
+  .source "AdnRecordCache.java"
+  
+--- 1,4 ----
+! .class public Lcom/android/internal/telephony/AdnRecordCache;
+  .super Landroid/os/Handler;
+  .source "AdnRecordCache.java"
+  

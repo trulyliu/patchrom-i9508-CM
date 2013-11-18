@@ -1,0 +1,166 @@
+*** PhoneWindowManager.smali	2013-11-18 12:22:21.310343499 +0800
+--- PhoneWindowManager.smali	2013-11-18 12:19:24.098340172 +0800
+***************
+*** 592,597 ****
+  
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
+      new-instance v0, Ljava/lang/Object;
+  
+      invoke-direct {v0}, Ljava/lang/Object;-><init>()V
+--- 597,608 ----
+  
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
++     new-instance v0, Landroid/os/Binder;
++ 
++     invoke-direct {v0}, Landroid/os/Binder;-><init>()V
++ 
++     iput-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mStatusBarDisableToken:Landroid/os/IBinder;
++ 
+      new-instance v0, Ljava/lang/Object;
+  
+      invoke-direct {v0}, Ljava/lang/Object;-><init>()V
+***************
+*** 3961,3980 ****
+  
+      if-nez v2, :cond_5
+  
+-     move-object/from16 v0, p0
+- 
+-     iget v2, v0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mUnrestrictedScreenTop:I
+- 
+-     move-object/from16 v0, p0
+- 
+-     iget v3, v0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mStatusBarHeight:I
+- 
+-     add-int/2addr v2, v3
+- 
+-     move-object/from16 v0, p0
+- 
+-     iput v2, v0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mSystemTop:I
+- 
+      .end local v13           #navVisible:Z
+      :cond_5
+      return-void
+--- 3974,3979 ----
+  
+      if-nez v2, :cond_5
+  
+      .end local v13           #navVisible:Z
+      :cond_5
+      return-void
+***************
+*** 6845,6853 ****
+  
+      if-nez v2, :cond_0
+  
+!     new-instance v2, Lcom/android/internal/policy/impl/KeyguardViewMediator;
+  
+!     invoke-direct {v2, p1, v5}, Lcom/android/internal/policy/impl/KeyguardViewMediator;-><init>(Landroid/content/Context;Lcom/android/internal/widget/LockPatternUtils;)V
+  
+      iput-object v2, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mKeyguardMediator:Lcom/android/internal/policy/impl/KeyguardViewMediator;
+  
+--- 6896,6904 ----
+  
+      if-nez v2, :cond_0
+  
+!     new-instance v2, Lcom/android/internal/policy/impl/MiuiKeyguardViewMediator;
+  
+!     invoke-direct {v2, p1, p0}, Lcom/android/internal/policy/impl/MiuiKeyguardViewMediator;-><init>(Landroid/content/Context;Lcom/android/internal/policy/impl/PhoneWindowManager;)V
+  
+      iput-object v2, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mKeyguardMediator:Lcom/android/internal/policy/impl/KeyguardViewMediator;
+  
+***************
+*** 7791,7798 ****
+      .end local v34           #telephonyService:Lcom/android/internal/telephony/ITelephony;
+      :cond_5
+      :goto_3
+!     if-eqz v23, :cond_6
+  
+      const-string v3, "WindowManager"
+  
+      const-string v5, "Ignoring HOME; there\'s a ringing incoming call."
+--- 7842,7860 ----
+      .end local v34           #telephonyService:Lcom/android/internal/telephony/ITelephony;
+      :cond_5
+      :goto_3
+!     if-eqz v23, :cond_miui_0
+! 
+!     move-object/from16 v0, p0
+! 
+!     iget-object v0, v0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mContext:Landroid/content/Context;
+! 
+!     invoke-static {v0}, Lcom/android/internal/policy/impl/PhoneWindowManager$Injector;->isInCallScreenShowing(Landroid/content/Context;)Z
+  
++     move-result v23
++ 
++     :cond_miui_0
++     if-eqz v23, :cond_6
++     
+      const-string v3, "WindowManager"
+  
+      const-string v5, "Ignoring HOME; there\'s a ringing incoming call."
+***************
+*** 8823,8829 ****
+  
+      .local v6, isWakeKey:Z
+      :goto_4
+!     if-eqz v2, :cond_3
+  
+      move/from16 v0, p2
+  
+--- 8885,8891 ----
+  
+      .local v6, isWakeKey:Z
+      :goto_4
+!     invoke-static/range {p0 .. p2}, Lcom/android/internal/policy/impl/PhoneWindowManager$Injector;->performReleaseHapticFeedback(Lcom/android/internal/policy/impl/PhoneWindowManager;Landroid/view/KeyEvent;I)V
+  
+      move/from16 v0, p2
+  
+***************
+*** 9533,9539 ****
+  
+      iget-object v2, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mKeyguardMediator:Lcom/android/internal/policy/impl/KeyguardViewMediator;
+  
+!     invoke-virtual {v2}, Lcom/android/internal/policy/impl/KeyguardViewMediator;->onWakeMotionWhenKeyguardShowingTq()V
+  
+      :cond_0
+      :goto_1
+--- 9602,9608 ----
+  
+      iget-object v2, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mKeyguardMediator:Lcom/android/internal/policy/impl/KeyguardViewMediator;
+  
+!     invoke-virtual {v2}, Lcom/android/internal/policy/impl/KeyguardViewMediator;->onWakeMotionWhenKeyguardShowingTq()Z
+  
+      :cond_0
+      :goto_1
+***************
+*** 13578,13590 ****
+      move-result v0
+  
+      .local v0, keyguardShowing:Z
+!     iget-object v1, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mGlobalActions:Lcom/android/internal/policy/impl/GlobalActions;
+  
+      invoke-virtual {p0}, Lcom/android/internal/policy/impl/PhoneWindowManager;->isDeviceProvisioned()Z
+  
+      move-result v2
+  
+!     invoke-virtual {v1, v0, v2}, Lcom/android/internal/policy/impl/GlobalActions;->showDialog(ZZ)V
+  
+      if-eqz v0, :cond_1
+  
+--- 13746,13758 ----
+      move-result v0
+  
+      .local v0, keyguardShowing:Z
+!     iget-object v1, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mGlobalActions:Lcom/android/internal/policy/impl/MiuiGlobalActions;
+  
+      invoke-virtual {p0}, Lcom/android/internal/policy/impl/PhoneWindowManager;->isDeviceProvisioned()Z
+  
+      move-result v2
+  
+!     invoke-virtual {v1, v0, v2}, Lcom/android/internal/policy/impl/MiuiGlobalActions;->showDialog(ZZ)V
+  
+      if-eqz v0, :cond_1
+  

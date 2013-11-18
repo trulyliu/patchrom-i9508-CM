@@ -1,0 +1,19 @@
+*** ./smali/android/os/RecoverySystem.smali	2013-11-18 12:21:45.170342821 +0800
+--- /opt/opensource/micode/9508cm/temp/new_smali/framework.jar.out/./smali/android/os/RecoverySystem.smali	2013-11-18 12:18:48.914339512 +0800
+***************
+*** 461,466 ****
+--- 461,474 ----
+      move-result-object v1
+  
+      .local v1, filename:Ljava/lang/String;
++     const-string v2, "storage/emulated"
++ 
++     const-string v3, "data/media"
++ 
++     invoke-virtual {v1, v2, v3}, Ljava/lang/String;->replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
++ 
++     move-result-object v1
++ 
+      const-string v2, "RecoverySystem"
+  
+      new-instance v3, Ljava/lang/StringBuilder;

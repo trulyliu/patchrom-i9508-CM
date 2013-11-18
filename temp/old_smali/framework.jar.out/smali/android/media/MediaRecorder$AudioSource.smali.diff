@@ -1,0 +1,13 @@
+*** ./smali/android/media/MediaRecorder$AudioSource.smali	2013-11-18 12:21:41.302342748 +0800
+--- /opt/opensource/micode/9508cm/temp/new_smali/framework.jar.out/./smali/android/media/MediaRecorder$AudioSource.smali	2013-11-18 12:18:45.138339441 +0800
+***************
+*** 19,24 ****
+--- 19,26 ----
+  
+  .field public static final DEFAULT:I = 0x0
+  
++ .field public static final FM:I = 0x9
++ 
+  .field public static final MIC:I = 0x1
+  
+  .field public static final REMOTE_SUBMIX_SOURCE:I = 0x8

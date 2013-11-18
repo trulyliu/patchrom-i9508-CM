@@ -1,0 +1,32 @@
+*** PhoneNumberUtils.smali	2013-11-18 12:21:32.722342587 +0800
+--- PhoneNumberUtils.smali	2013-11-18 12:18:36.650339280 +0800
+***************
+*** 4119,4124 ****
+  
+      move-result-object p0
+  
+      const-string v8, "ril.ecclist"
+  
+      invoke-static {v8}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+--- 4136,4156 ----
+  
+      move-result-object p0
+  
++     invoke-static {p0}, Lmiui/telephony/PhoneNumberUtils;->parseNumber(Ljava/lang/String;)Ljava/lang/String;
++ 
++     move-result-object p0
++ 
++     invoke-static {p0, p2}, Lmiui/telephony/PhoneNumberUtils;->isMiuiEmergencyNumber(Ljava/lang/String;Z)Z
++ 
++     move-result v8
++ 
++     if-eqz v8, :cond_miui_0
++ 
++     move v6, v7
++ 
++     goto :goto_0
++ 
++     :cond_miui_0
+      const-string v8, "ril.ecclist"
+  
+      invoke-static {v8}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;

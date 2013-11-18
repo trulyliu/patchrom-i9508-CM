@@ -1,0 +1,63 @@
+*** PhoneWindow.smali	2013-11-18 12:22:20.934343492 +0800
+--- PhoneWindow.smali	2013-11-18 12:19:23.706340165 +0800
+***************
+*** 16,22 ****
+          Lcom/android/internal/policy/impl/PhoneWindow$DecorView;,
+          Lcom/android/internal/policy/impl/PhoneWindow$ActionMenuPresenterCallback;,
+          Lcom/android/internal/policy/impl/PhoneWindow$PanelMenuPresenterCallback;,
+!         Lcom/android/internal/policy/impl/PhoneWindow$WindowManagerHolder;
+      }
+  .end annotation
+  
+--- 16,23 ----
+          Lcom/android/internal/policy/impl/PhoneWindow$DecorView;,
+          Lcom/android/internal/policy/impl/PhoneWindow$ActionMenuPresenterCallback;,
+          Lcom/android/internal/policy/impl/PhoneWindow$PanelMenuPresenterCallback;,
+!         Lcom/android/internal/policy/impl/PhoneWindow$WindowManagerHolder;,
+!         Lcom/android/internal/policy/impl/PhoneWindow$Injector;
+      }
+  .end annotation
+  
+***************
+*** 4290,4303 ****
+  
+      if-eqz v19, :cond_26
+  
+!     const v10, 0x10900b7
+  
+      .restart local v10       #layoutResource:I
+      goto/16 :goto_8
+  
+      .end local v10           #layoutResource:I
+      :cond_26
+!     const v10, 0x10900b6
+  
+      .restart local v10       #layoutResource:I
+      goto/16 :goto_8
+--- 4334,4359 ----
+  
+      if-eqz v19, :cond_26
+  
+!     invoke-virtual/range {p0 .. p0}, Lcom/android/internal/policy/impl/PhoneWindow;->getContext()Landroid/content/Context;
+! 
+!     move-result-object v19
+! 
+!     invoke-static/range {v19 .. v19}, Lcom/android/internal/policy/impl/PhoneWindow$Injector;->getActionBarOverlayResourceId(Landroid/content/Context;)I
+! 
+!     move-result v10
+  
+      .restart local v10       #layoutResource:I
+      goto/16 :goto_8
+  
+      .end local v10           #layoutResource:I
+      :cond_26
+!     invoke-virtual/range {p0 .. p0}, Lcom/android/internal/policy/impl/PhoneWindow;->getContext()Landroid/content/Context;
+! 
+!     move-result-object v19
+! 
+!     invoke-static/range {v19 .. v19}, Lcom/android/internal/policy/impl/PhoneWindow$Injector;->getActionBarResourceId(Landroid/content/Context;)I
+! 
+!     move-result v10
+  
+      .restart local v10       #layoutResource:I
+      goto/16 :goto_8

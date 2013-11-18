@@ -1,0 +1,25 @@
+*** INotificationManager.smali	2013-11-18 12:22:05.258343198 +0800
+--- INotificationManager.smali	2013-11-18 12:19:08.414339878 +0800
+***************
+*** 15,20 ****
+  
+  
+  # virtual methods
+  .method public abstract areNotificationsEnabledForPackage(Ljava/lang/String;)Z
+      .annotation system Ldalvik/annotation/Throws;
+          value = {
+--- 15,28 ----
+  
+  
+  # virtual methods
++ .method public abstract areNotificationsEnabled(Ljava/lang/String;)Z
++     .annotation system Ldalvik/annotation/Throws;
++         value = {
++             Landroid/os/RemoteException;
++         }
++     .end annotation
++ .end method
++ 
+  .method public abstract areNotificationsEnabledForPackage(Ljava/lang/String;)Z
+      .annotation system Ldalvik/annotation/Throws;
+          value = {

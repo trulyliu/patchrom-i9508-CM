@@ -1,0 +1,20 @@
+*** ./smali/com/android/server/VibratorService.smali	2013-11-18 12:21:30.494342545 +0800
+--- /opt/opensource/micode/9508cm/temp/new_smali/services.jar.out/./smali/com/android/server/VibratorService.smali	2013-11-18 12:18:34.462339240 +0800
+***************
+*** 1112,1117 ****
+--- 1112,1126 ----
+      throw v1
+  .end method
+  
++ .method public vibrateEx([BLandroid/os/IBinder;)V
++     .locals 0
++     .parameter "params"
++     .parameter "token"
++ 
++     .prologue
++     return-void
++ .end method
++ 
+  .method public vibratePattern([JILandroid/os/IBinder;)V
+      .locals 9
+      .parameter "pattern"

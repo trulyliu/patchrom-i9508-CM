@@ -1,0 +1,59 @@
+*** Notification.smali	2013-11-18 12:22:07.478343238 +0800
+--- Notification.smali	2013-11-18 12:19:10.490339917 +0800
+***************
+*** 95,100 ****
+  
+  .field public deleteIntent:Landroid/app/PendingIntent;
+  
+  .field private extras:Landroid/os/Bundle;
+  
+  .field public flags:I
+--- 95,102 ----
+  
+  .field public deleteIntent:Landroid/app/PendingIntent;
+  
++ .field public extraNotification:Lmiui/app/ExtraNotification;
++ 
+  .field private extras:Landroid/os/Bundle;
+  
+  .field public flags:I
+***************
+*** 780,785 ****
+      iput-object v7, v2, Landroid/app/Notification;->bigContentView:Landroid/widget/RemoteViews;
+  
+      :cond_8
+      return-object v2
+  .end method
+  
+--- 810,821 ----
+      iput-object v7, v2, Landroid/app/Notification;->bigContentView:Landroid/widget/RemoteViews;
+  
+      :cond_8
++     iget-object v7, v2, Landroid/app/Notification;->extraNotification:Lmiui/app/ExtraNotification;
++ 
++     iget-object v8, p0, Landroid/app/Notification;->extraNotification:Lmiui/app/ExtraNotification;
++ 
++     invoke-virtual {v7, v8}, Lmiui/app/ExtraNotification;->setTo(Lmiui/app/ExtraNotification;)V
++ 
+      return-object v2
+  .end method
+  
+***************
+*** 1433,1438 ****
+      invoke-virtual {v0, p1, v2}, Landroid/widget/RemoteViews;->writeToParcel(Landroid/os/Parcel;I)V
+  
+      :goto_9
+      return-void
+  
+      :cond_0
+--- 1469,1478 ----
+      invoke-virtual {v0, p1, v2}, Landroid/widget/RemoteViews;->writeToParcel(Landroid/os/Parcel;I)V
+  
+      :goto_9
++     iget-object v0, p0, Landroid/app/Notification;->extraNotification:Lmiui/app/ExtraNotification;
++ 
++     invoke-virtual {v0, p1, p2}, Lmiui/app/ExtraNotification;->writeToParcel(Landroid/os/Parcel;I)V
++ 
+      return-void
+  
+      :cond_0

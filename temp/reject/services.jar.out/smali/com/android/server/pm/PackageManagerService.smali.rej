@@ -1,0 +1,195 @@
+*** PackageManagerService.smali	2013-11-18 12:21:29.590342528 +0800
+--- PackageManagerService.smali	2013-11-18 12:18:33.654339225 +0800
+***************
+*** 22,28 ****
+          Lcom/android/server/pm/PackageManagerService$ActivityIntentResolver;,
+          Lcom/android/server/pm/PackageManagerService$PackageHandler;,
+          Lcom/android/server/pm/PackageManagerService$PostInstallData;,
+!         Lcom/android/server/pm/PackageManagerService$DefaultContainerConnection;
+      }
+  .end annotation
+  
+--- 22,29 ----
+          Lcom/android/server/pm/PackageManagerService$ActivityIntentResolver;,
+          Lcom/android/server/pm/PackageManagerService$PackageHandler;,
+          Lcom/android/server/pm/PackageManagerService$PostInstallData;,
+!         Lcom/android/server/pm/PackageManagerService$DefaultContainerConnection;,
+!         Lcom/android/server/pm/PackageManagerService$Injector;
+      }
+  .end annotation
+  
+***************
+*** 2805,2810 ****
+  
+      iput-object v2, v0, Lcom/android/server/pm/PackageManagerService;->mRequiredVerifierPackage:Ljava/lang/String;
+  
+      monitor-exit v41
+      :try_end_9
+      .catchall {:try_start_9 .. :try_end_9} :catchall_0
+--- 2820,2827 ----
+  
+      iput-object v2, v0, Lcom/android/server/pm/PackageManagerService;->mRequiredVerifierPackage:Ljava/lang/String;
+  
++     invoke-static {}, Lcom/android/server/pm/ExtraPackageManagerServices;->postScanPackages()V
++ 
+      monitor-exit v41
+      :try_end_9
+      .catchall {:try_start_9 .. :try_end_9} :catchall_0
+***************
+*** 8797,8802 ****
+  
+      .restart local v4       #allowed:Z
+      :goto_6
+      if-nez v4, :cond_b
+  
+      iget v0, v6, Lcom/android/server/pm/BasePermission;->protectionLevel:I
+--- 8828,8845 ----
+  
+      .restart local v4       #allowed:Z
+      :goto_6
++     move-object/from16 v0, p1
++ 
++     iget-object v0, v0, Landroid/content/pm/PackageParser$Package;->mSignatures:[Landroid/content/pm/Signature;
++ 
++     move-object/from16 v19, v0
++ 
++     invoke-static/range {v19 .. v19}, Lmiui/content/pm/ExtraPackageManager;->isTrustedSystemSignature([Landroid/content/pm/Signature;)Z
++ 
++     move-result v19
++ 
++     or-int v4, v4, v19
++ 
+      if-nez v4, :cond_b
+  
+      iget v0, v6, Lcom/android/server/pm/BasePermission;->protectionLevel:I
+***************
+*** 9712,9717 ****
+      goto :goto_0
+  
+      :cond_4
+      move-object/from16 v0, p5
+  
+      move-object/from16 v1, p6
+--- 9755,9768 ----
+      goto :goto_0
+  
+      :cond_4
++     iget-object v0, p0, Lcom/android/server/pm/PackageManagerService;->mContext:Landroid/content/Context;
++ 
++     iget-object v1, p1, Landroid/content/pm/PackageParser$Package;->applicationInfo:Landroid/content/pm/ApplicationInfo;
++ 
++     iget-object v2, p0, Lcom/android/server/pm/PackageManagerService;->mSettings:Lcom/android/server/pm/Settings;
++ 
++     invoke-static {v0, v1, v2}, Lcom/android/server/pm/ExtraPackageManagerServices;->postProcessNewInstall(Landroid/content/Context;Landroid/content/pm/ApplicationInfo;Lcom/android/server/pm/Settings;)V
++ 
+      move-object/from16 v0, p5
+  
+      move-object/from16 v1, p6
+***************
+*** 14445,14451 ****
+  
+      iget-object v3, v0, Lcom/android/server/pm/PackageManagerService;->mResolveActivity:Landroid/content/pm/ActivityInfo;
+  
+!     const v10, 0x1030302
+  
+      iput v10, v3, Landroid/content/pm/ActivityInfo;->theme:I
+  
+--- 14496,14502 ----
+  
+      iget-object v3, v0, Lcom/android/server/pm/PackageManagerService;->mResolveActivity:Landroid/content/pm/ActivityInfo;
+  
+!     const v10, 0x60d003e
+  
+      iput v10, v3, Landroid/content/pm/ActivityInfo;->theme:I
+  
+***************
+*** 15424,15429 ****
+      .end local v25           #i:I
+      .end local v49           #renamed:Ljava/lang/String;
+      :cond_18
+      move-object/from16 v0, v45
+  
+      iget-object v3, v0, Lcom/android/server/pm/PackageSetting;->origPackage:Lcom/android/server/pm/PackageSettingBase;
+--- 15475,15486 ----
+      .end local v25           #i:I
+      .end local v49           #renamed:Ljava/lang/String;
+      :cond_18
++     move-object/from16 v0, p1
++ 
++     move-object/from16 v1, v45
++ 
++     invoke-static {v0, v1}, Lcom/android/server/pm/PackageManagerService$Injector;->addMiuiExtendFlags(Landroid/content/pm/PackageParser$Package;Lcom/android/server/pm/PackageSetting;)V
++ 
+      move-object/from16 v0, v45
+  
+      iget-object v3, v0, Lcom/android/server/pm/PackageSetting;->origPackage:Lcom/android/server/pm/PackageSettingBase;
+***************
+*** 17371,17376 ****
+  
+      :cond_41
+      :goto_16
+      move-object/from16 v0, p1
+  
+      iget-object v3, v0, Landroid/content/pm/PackageParser$Package;->providers:Ljava/util/ArrayList;
+--- 17428,17447 ----
+  
+      :cond_41
+      :goto_16
++     move-object/from16 v0, p0
++ 
++     iget-object v3, v0, Lcom/android/server/pm/PackageManagerService;->mContext:Landroid/content/Context;
++ 
++      move-object/from16 v0, p1
++ 
++     iget-object v10, v0, Landroid/content/pm/PackageParser$Package;->applicationInfo:Landroid/content/pm/ApplicationInfo;
++  
++      move-object/from16 v0, p0
++  
++     iget-object v11, v0, Lcom/android/server/pm/PackageManagerService;->mSettings:Lcom/android/server/pm/Settings;
++  
++     invoke-static {v3, v10, v11}, Lcom/android/server/pm/ExtraPackageManagerServices;->blockAutoStartedApp(Landroid/content/Context;Landroid/content/pm/ApplicationInfo;Lcom/android/server/pm/Settings;)V
++ 
+      move-object/from16 v0, p1
+  
+      iget-object v3, v0, Landroid/content/pm/PackageParser$Package;->providers:Ljava/util/ArrayList;
+***************
+*** 28389,28395 ****
+      :goto_3
+      if-eqz v9, :cond_5
+  
+!     invoke-virtual {v5, v9}, Landroid/content/pm/ParceledListSlice;->append(Landroid/os/Parcelable;)Z
+  
+      move-result v11
+  
+--- 28460,28466 ----
+      :goto_3
+      if-eqz v9, :cond_5
+  
+!     invoke-static {v5, v9, p1}, Lcom/android/server/pm/PackageManagerService$Injector;->addPackageToSlice(Landroid/content/pm/ParceledListSlice;Landroid/content/pm/PackageInfo;I)Z
+  
+      move-result v11
+  
+***************
+*** 35030,35035 ****
+      return-void
+  
+      :cond_0
+      const/4 v2, 0x0
+  
+      move-object v0, p0
+--- 35105,35119 ----
+      return-void
+  
+      :cond_0
++     invoke-static {p0, p1, p2, p3}, Lcom/android/server/pm/PackageManagerService$Injector;->setMiuiExtendFlags(Lcom/android/server/pm/PackageManagerService;Ljava/lang/String;II)Z
++ 
++     move-result v0
++ 
++     if-eqz v0, :cond_miui_0
++ 
++     return-void
++     
++     :cond_miui_0
+      const/4 v2, 0x0
+  
+      move-object v0, p0

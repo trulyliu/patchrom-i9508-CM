@@ -1,0 +1,35 @@
+*** ./smali/android/net/wifi/WifiConfiguration$1.smali	2013-11-18 12:22:10.378343294 +0800
+--- /opt/opensource/micode/9508cm/temp/new_smali/framework.jar.out/./smali/android/net/wifi/WifiConfiguration$1.smali	2013-11-18 12:19:13.374339971 +0800
+***************
+*** 85,90 ****
+--- 85,114 ----
+  
+      iput-object v6, v1, Landroid/net/wifi/WifiConfiguration;->preSharedKey:Ljava/lang/String;
+  
++     invoke-virtual {p1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
++ 
++     move-result-object v6
++ 
++     iput-object v6, v1, Landroid/net/wifi/WifiConfiguration;->wapiASCert:Ljava/lang/String;
++ 
++     invoke-virtual {p1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
++ 
++     move-result-object v6
++ 
++     iput-object v6, v1, Landroid/net/wifi/WifiConfiguration;->wapiUserCert:Ljava/lang/String;
++ 
++     invoke-virtual {p1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
++ 
++     move-result-object v6
++ 
++     iput-object v6, v1, Landroid/net/wifi/WifiConfiguration;->wapiPsk:Ljava/lang/String;
++ 
++     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
++ 
++     move-result v6
++ 
++     iput v6, v1, Landroid/net/wifi/WifiConfiguration;->wapiPskType:I
++ 
+      const/4 v3, 0x0
+  
+      .local v3, i:I

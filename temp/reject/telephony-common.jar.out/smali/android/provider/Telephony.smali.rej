@@ -1,0 +1,18 @@
+*** Telephony.smali	2013-11-18 12:22:17.550343428 +0800
+--- Telephony.smali	2013-11-18 12:19:20.174340098 +0800
+***************
+*** 6,11 ****
+  # annotations
+  .annotation system Ldalvik/annotation/MemberClasses;
+      value = {
+          Landroid/provider/Telephony$CellBroadcasts;,
+          Landroid/provider/Telephony$Carriers;,
+          Landroid/provider/Telephony$MmsSms;,
+--- 6,12 ----
+  # annotations
+  .annotation system Ldalvik/annotation/MemberClasses;
+      value = {
++         Landroid/provider/Telephony$Intents;,
+          Landroid/provider/Telephony$CellBroadcasts;,
+          Landroid/provider/Telephony$Carriers;,
+          Landroid/provider/Telephony$MmsSms;,
